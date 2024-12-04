@@ -1,0 +1,43 @@
+ul.pagination.justify-content-end.flex-wrap {
+    width: fit-content;
+    border-radius: 12px;
+    margin: 0 15px 15px;
+    li.page-item {
+        margin: 0;
+        a.page-link {            
+            border: 1px solid rgba(225, 230, 239, 1);
+            border-radius: 0px;
+            height: 34px;
+            width: 34px;
+        }
+        &:first-child {
+            a.page-link {
+                background-image: url('../../../../../../../_metronic/assets/images/angleIcon.svg');  
+                background-repeat: no-repeat;
+                background-position: center center; 
+                border-radius: 12px 0 0 12px;
+            }
+        }
+        &:last-child {
+            a.page-link {
+                background-image: url('../../../../../../../_metronic/assets/images/angleIcon.svg');  
+                background-repeat: no-repeat;
+                background-position: center center; 
+                transform: rotate(180deg);
+                border-radius: 12px 0 0 12px;
+            }
+        }
+        &.disabled{
+            a.page-link {
+                color: #6c757d;
+            }
+        }
+    }
+    li.page-item.active {
+        border-radius: 0px;
+        a.page-link {
+            background: #0062A7;
+            border: 1px solid #0062A7;
+        }
+    }
+}

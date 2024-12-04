@@ -1,0 +1,15 @@
+.new_pass_div {
+  position: relative;
+  .eyeIcon {
+    position: absolute;
+    top: 12px;
+    right: 35px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+}
+
+.outer-wrapper {
+  max-height: unset !important;
+  padding: 60px 60px 20px !important;
+}

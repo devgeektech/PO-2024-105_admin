@@ -1,0 +1,38 @@
+
+@import "~react-datepicker/dist/react-datepicker.css";
+
+.upload-photo {
+    max-width: 100%;
+    max-width: 140px;
+    max-height: 140px;
+    border: 1px solid #e7e4e4;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.image-upload>input {
+    display: none;
+  }
+
+  .product_img { 
+    max-width: 100%;
+    max-width: 140px;
+    max-height: 140px;
+    border: 1px solid #e7e4e4;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    object-fit: contain;
+  }
+
+  .admin-status-switch{
+    label{
+      width: 40px;
+      height: 22px;  
+      &::after{
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+  }

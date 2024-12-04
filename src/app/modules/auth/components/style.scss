@@ -1,0 +1,12 @@
+#kt_login_signin_form {
+    input.form-control[name="password"] {
+        background-position: 92% center;
+    }
+    i.bi {
+        position: absolute;
+        right: 10px;
+        top: 12px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+}

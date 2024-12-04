@@ -1,0 +1,47 @@
+//
+// Theme style
+//
+
+// Initialize
+@import "init";
+
+// Components
+@import "./core/components/components";
+@import "components/components";
+
+// Layout
+@import "layout/layout";
+
+.form-control.form-control-solid {
+  // background-color: #ebebeb;
+  // border-color: #e5e5e5;
+  border: 1px solid #e5e7eb;
+}
+table.dataTable {
+  min-height: 170px;
+  .verifiedOptions.dropdown {
+    .dropdown-toggle {
+      &:after {
+        display: none;
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .dropdown-menu {
+        min-width: 90px;
+    }
+    a.menu-link {
+    //   border: 1px solid #009ef7 !important;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.table-responsive{
+  min-height: calc(100vh - 295px) !important;
+}

@@ -1,0 +1,229 @@
+button.btn.btn-primary {
+  background: #0062A7;
+  border-radius: 12px;
+  &:hover,
+  &:hover:not(.btn-active) {
+    background: #0062A7 !important;
+  }
+}
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  border-color: #0062A7;
+  background-image: url("../_metronic/assets/images/tick.svg");
+}
+.btn.btn-primary {
+  &:active {
+    &:not(.btn-active) {
+      background: #0062A7 !important;
+      color: #fff !important;
+    }
+  }
+}
+.header {
+  .header-brand {
+    background: #0062A7;
+    .logo_img {
+      filter: none;
+      height: 80px;
+    }
+  }
+}
+.aside {
+  background: #FFE500;
+  .aside-toolbar {
+    .aside-user {
+      border-top: 1px solid rgba(225, 230, 239, 1);
+    }
+  }
+}
+.aside-menu {
+  .menu {
+    .menu-item {
+      margin: 4px 0;
+      .menu-link.active {
+        background-color: rgba(240, 245, 255, 1);
+        color: rgba(47, 111, 237, 1);
+        .menu-icon {
+          color: rgba(47, 111, 237, 1);
+          svg, path {
+            color: rgba(47, 111, 237, 1);
+            fill: rgba(47, 111, 237, 1);
+          }
+          .svg-icon,
+          i {
+            color: rgba(47, 111, 237, 1);
+          }
+        }
+        span.menu-title {
+          color: rgba(47, 111, 237, 1);
+        }
+      }
+      .menu-link {
+        .menu-title {
+          color: rgba(29, 36, 51, 0.8);
+        }
+      }
+      &:not(.here) {
+        .menu-link:hover:not(.disabled):not(.active):not(.here) {
+          color: rgba(47, 111, 237, 1);
+          background-color: rgba(240, 245, 255, 1);
+          .menu-icon,
+          i,
+          .menu-title {
+            color: rgba(47, 111, 237, 1) !important;
+          }
+        }
+      }
+    }
+  }
+}
+.table:not(.table-bordered) {
+  tr,
+  th,
+  td {
+    &:first-child {
+      padding-left: 1.25rem;
+    }
+  }
+}
+table.dataTable {
+  thead {
+    border: 1px solid rgba(241, 243, 249, 1);
+    background: rgba(248, 249, 252, 1);
+    th {
+      color: rgba(29, 36, 51, 0.65);
+      font-weight: 500 !important;
+      white-space: nowrap;
+    }
+  }
+  .verifiedOptions.dropdown {
+    .dropdown-menu {
+      padding: 8px;
+    }
+  }
+}
+.card-title {
+  input.form-control {
+    border: 1px solid rgba(225, 230, 239, 1);
+    background: rgba(248, 249, 252, 1);
+  }
+}
+.verifiedOptions {
+  a.menu-link {
+    white-space: nowrap;
+    color: rgb(0, 98, 167) !important;
+    background-color: rgb(240, 245, 255) !important;
+  }
+}
+
+.scrolltop {
+  background-color: rgb(0, 98, 167);
+  &:hover {
+    background-color: rgb(0, 98, 167);
+  }
+}
+.card {
+  border: 1px solid rgba(225, 230, 239, 1);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.05);
+}
+.modal {
+  .image-upload {
+    label.btn.btn-primary {
+      background: rgb(0, 98, 167);
+      box-shadow: 0px -2px 2px 0px rgba(0, 0, 0, 0.15) inset;
+      border-radius: 12px;
+      padding: 8px 16px;
+    }
+  }
+  button.primaryBtn.btn.btn-secondary {
+    background-color: transparent !important;
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+  button.btn.btn-primary {
+    border-radius: 14px;
+  }
+  button.primaryBtn.active.btn.btn-primary {
+    background: rgb(0, 98, 167) !important;
+  }
+}
+.chip {
+  background: rgb(0, 98, 167) !important;
+}
+.dropzone {
+  border: 1px dashed rgb(0, 98, 167) !important;
+  background: rgb(240, 245, 255) !important;
+}
+input.form-control,
+select.form-select,
+.searchWrapper,
+textarea.form-control {
+  border-radius: 12px !important;
+}
+
+
+.multiselect-container.multiSelectContainer  .searchWrapper {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 22px;
+  padding: 5px;
+  position: relative;
+  width: 296px;
+}
+.error {
+    color: rgba(224, 45, 60, 1) !important;
+}
+label.form-label {
+    span {
+        color: rgba(224, 45, 60, 1);
+    }
+}
+.table.gy-5 {
+    tr {
+        td {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+    }
+}
+.menu.menu-sub.menu-sub-dropdown {
+    a.menu-link {
+        &:hover {
+            color: rgb(0, 98, 167) !important;
+            background-color: rgb(240, 245, 255) !important;
+        }
+    }
+}
+
+.multi-select-role .chip,.multi-select-role .option{
+  text-transform: capitalize;
+}
+
+.custom-select-box .css-13cymwt-control,.custom-select-box .css-t3ipsp-control{
+  border-radius: 12px;
+  padding: 3px;
+  border-color: var(--bs-gray-300);
+  font-weight: 500;
+  color: var(--bs-gray-700);
+}
+
+.sb_text-yellow{
+  color:#FFE500;
+}
+
+.sb_text-blue{
+  color:#0062A7;
+}
+.img-class{
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+}
+.btn.assign {
+  width: 88px;
+  height: 40px;
+  font-size: 13px;
+  color: white;
+  background-color: #0062A7;
+}
