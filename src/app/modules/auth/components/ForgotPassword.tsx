@@ -99,7 +99,7 @@ export function ForgotPassword() {
 
       {hasErrors === false && (
         <div className='mb-10 bg-light-info p-8 rounded'>
-          <div className='text-info'>Sent password reset otp. Please check your email</div>
+          <div className='text-info'>Sent password reset link. Please check your email</div>
         </div>
       )}
       {/* end::Title */}
@@ -129,62 +129,6 @@ export function ForgotPassword() {
           </div>
         )}
       </div>
-      <VisibilityBox show={otpSended}>
-        <div className='fv-row mb-8'>
-          <label className='form-label fw-bolder text-gray-900 fs-6'>OTP</label>
-        <input
-          type='string'
-          placeholder='Enter OTP'
-          autoComplete='off'
-          {...formik.getFieldProps('otp')}
-          className={clsx(
-            'form-control bg-transparent',
-            {'is-invalid': formik.touched.otp && formik.errors.otp},
-            {
-              'is-valid': formik.touched.otp && !formik.errors.otp,
-            }
-          )}
-        />
-        {formik.touched.otp && formik.errors.otp && (
-          <div className='fv-plugins-message-container'>
-            <div className='fv-help-block'>
-              <span role='alert'>{formik.errors.otp}</span>
-            </div>
-          </div>
-        )}
-        </div>
-        <div className="fv-row mb-3">
-        <label className="form-label fw-bolder text-dark fs-6 mb-0">
-          Password
-        </label>
-        <div className="position-relative">
-        <input
-          placeholder="Password"
-          type={"password"}
-          autoComplete="off"
-          {...formik.getFieldProps("password")}
-          className={clsx(
-            "form-control bg-transparent",
-            {
-              "is-invalid": formik.touched.password && formik.errors.password,
-            },
-            {
-              "is-valid": formik.touched.password && !formik.errors.password,
-            }
-          )}
-          name="password"
-        />
-        </div>
-        {formik.touched.password && formik.errors.password && (
-          <div className="fv-plugins-message-container">
-            <div className="fv-help-block">
-              <span role="alert">{formik.errors.password}</span>
-            </div>
-          </div>
-        )}
-      </div>
-      </VisibilityBox>
-      {/* end::Form group */}
 
       {/* begin::Form group */}
       <div className='d-flex flex-wrap justify-content-center pb-lg-0'>
