@@ -82,7 +82,7 @@ function WellnessTypesModal() {
       <Modal
         backdrop="static"
         size="lg"
-        show={sharedActions.subServicesModal}
+        show={sharedActions.wellnessTypesModal}
         onHide={closeModal}
         animation={true}
       >

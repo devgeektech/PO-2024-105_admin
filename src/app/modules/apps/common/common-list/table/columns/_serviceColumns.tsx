@@ -12,7 +12,11 @@ const servicesColumns: ReadonlyArray<Column<User>> = [
     id: 'name',
     Cell: ({ ...props }) => <TitleCell userObj={props.data[props.row.index].name} />,
   },
-
+  {
+    Header: (props) => <UserCustomHeader tableProps={props} title='Description' className='min-w-50px' />,
+    id: 'description',
+    Cell: ({ ...props }) => <TitleCell userObj={props.data[props.row.index].description} />,
+  },
   {
     Header: (props) => (
       <UserCustomHeader tableProps={props} title='Action' className='min-w-75px' />

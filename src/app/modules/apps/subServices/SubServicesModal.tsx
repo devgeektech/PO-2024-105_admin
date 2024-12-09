@@ -32,7 +32,7 @@ function SubServicesModal() {
   const formIntialValues = {
     description: sharedActions.formDetails.description || "",
     name: sharedActions.formDetails.name || "",
-    serviceId: sharedActions.formDetails.serviceId || ""
+    serviceId: sharedActions.formDetails.serviceId._id || ""
   };
 
   const subServicesFormik = useFormik({

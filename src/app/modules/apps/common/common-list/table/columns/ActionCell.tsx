@@ -155,9 +155,7 @@ const ActionCell: FC<Props> = ({ user }) => {
                   Details
                 </Link>
               )}
-              {(sharedActions.id !== "Task" ||
-                (sharedActions.id === "Task" &&
-                  user.status !== "completed")) && (
+              {(
                 <Link
                   to={"#"}
                   className="menu-link justify-content-start px-3 btn  btn-active-light-primary btn-sm"
