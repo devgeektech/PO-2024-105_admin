@@ -1,9 +1,5 @@
-import CalendarIcon from "../../../../app/icons/CalendarIcon";
 import EventIcon from "../../../../app/icons/EventIcon";
-import ForumIcon from "../../../../app/icons/ForumIcon";
 import PartnersIcon from "../../../../app/icons/PartnersIcon";
-import RoomIcon from "../../../../app/icons/RoomIcon";
-import TaskIcon from "../../../../app/icons/TaskIcon";
 import { AsideMenuItem } from "./AsideMenuItem";
 
 export function AsideMenuMain() {
@@ -11,8 +7,12 @@ export function AsideMenuMain() {
     <>
       <AsideMenuItem to="/users" icon={<PartnersIcon/>} title="Users" />
 
-      <AsideMenuItem to="/events" icon={<EventIcon/>} title="Events" />
+      <AsideMenuItem to="/events" icon={<EventIcon/>} title="Events" /> 
+
+      <AsideMenuItem to="/wellnessTypes" icon={<EventIcon />} title="WellnessTypes" />
       
+      <AsideMenuItem to="/subServices" icon={<EventIcon />} title="subServices" />
+
       {window.location.pathname === '/user/change-password' && <AsideMenuItem to="/user" icon={<PartnersIcon/>} title="Change Password" />}
     </>
   );
