@@ -3,9 +3,6 @@ import { Column } from 'react-table'
 import { TitleCell } from './TitleCell'
 import { UserCustomHeader } from './CustomHeader'
 import { ActionCell } from './ActionCell'
-import moment from 'moment'
-import { EventStatuCell } from './EventStatusCell'
-import { ActiveCell } from './ActiveCell'
 
 const servicesColumns: ReadonlyArray<Column<User>> = [
   {
