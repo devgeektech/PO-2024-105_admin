@@ -4,7 +4,6 @@ import clsx from 'clsx'
 import {Link, useNavigate} from 'react-router-dom'
 import {useFormik} from 'formik'
 import {requestPassword, requestVerifyAndChangePassword} from '../core/_requests'
-import VisibilityBox from '../../apps/common/visibility-box/VisibilityBox'
 import { notify } from '../../../../utils/shared'
 
 const initialValues = {

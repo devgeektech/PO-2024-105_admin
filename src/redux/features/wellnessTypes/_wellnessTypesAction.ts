@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { notify } from "../../../utils/shared";
-import { TIMES_DURATION } from "../../../utils/const";
 const API_URL = process.env.REACT_APP_API_URL;
 const GET_WELLNESS_TYPES = `${API_URL}/adminWeb/wellnessTypes`
 const DELETE_WELLNESS_TYPES = `${API_URL}/adminWeb/wellnessType/`
