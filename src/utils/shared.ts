@@ -5,6 +5,8 @@ import { getParnters } from "../redux/features/partner/_partnerAction";
 import { getUsers } from "../redux/features/user/_userAction";
 import { getEvents } from "../redux/features/event/_eventAction";
 import { getServices } from "../redux/features/service/_serviceAction";
+import { getSubServices } from "../redux/features/subServices/_subServicesAction";
+import { getWellnessTypes } from "../redux/features/wellnessTypes/_wellnessTypesAction";
 
 export const commonSwtichCases = (id: any, searchValue: any, dispatch: any) => {
     searchValue = encodeURIComponent(searchValue)
@@ -18,8 +20,14 @@ export const commonSwtichCases = (id: any, searchValue: any, dispatch: any) => {
         case 'Event':
             dispatch(getEvents({ search: searchValue.trim(), page: 1, limit: 10 }))
             break;
+        case "subServices":
+            dispatch(getSubServices({ search: searchValue.trim(), page: 1, limit: 10 }))
+            break;
         case 'Service':
-            dispatch(getServices({ search: searchValue.trim(), page: 1, limit: 10 }))
+            dispatch(getServices({ search: searchValue.trim(), page: 1, limit: 10 })); 
+            break;
+        case "WellnessTypes":
+            dispatch(getWellnessTypes({ search: searchValue.trim(), page: 1, limit: 10 })); 
             break;
         default:
     }

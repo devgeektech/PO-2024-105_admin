@@ -17,21 +17,22 @@ import { LANG } from "../../../constants/language";
 import logo from "../../../../_metronic/assets/logo/admin-logo.png";
 import Select from "react-select"
 import { addSubService, getSubServices, updateSubService } from "../../../../redux/features/subServices/_subServicesAction";
+import { getServices } from "../../../../redux/features/service/_serviceAction";
 function SubServicesModal() {
   const dispatch: any = useDispatch();
   const sharedActions: any = useSelector((state: any) => state.sharedActions);
-  const subServices: any = useSelector((state: any) => state.subServices?.data) || [];
+  const services: any = useSelector((state: any) => state.serviceList?.data) || [];
   const [imageUrl, setImageUrl] = useState<any>();
   const FormValidation = Yup.object().shape({
     name: Yup.string().required(REQUIRED),
     description: Yup.string(),
-    serviceId: Yup.string()
+    serviceId: Yup.string().required(REQUIRED),
   });
 
   const formIntialValues = {
     description: sharedActions.formDetails.description || "",
     name: sharedActions.formDetails.name || "",
-    serviceId: sharedActions.formDetails.serviceId
+    serviceId: sharedActions.formDetails.serviceId || ""
   };
 
   const subServicesFormik = useFormik({
@@ -62,7 +63,7 @@ function SubServicesModal() {
 
   useEffect(() => {
     if (sharedActions?.formDetails?._id && sharedActions?.formDetails?.image) setImageUrl(process.env.REACT_APP_FILE_URL + sharedActions?.formDetails?.image)
-    dispatch(getSubServices({ page: 1, limit: 10 }))
+      dispatch(getServices({ page: 1, limit: 10 }))
     }, [])
 
 
@@ -98,29 +99,6 @@ function SubServicesModal() {
         <Modal.Body>
           <FormikProvider value={subServicesFormik}>
             <Form onSubmit={subServicesFormik.handleSubmit} method="POST">
-            <div className="col-sm-12  col-md-6 mb-6 image-upload position-relative">
-                  <img
-                    className="w-25"
-                    src={
-                      imageUrl
-                        ? imageUrl
-                        : logo
-                    }
-                    alt="profile"
-                  />
-                  <label
-                    title={LANG.CHANGE}
-                    htmlFor="file-input"
-                    className="position-absolute bottom-0"
-                  >
-                    <i className="bi bi-pencil-square ms-2"></i>
-                  </label>
-                  <input
-                    onChange={handleChangeProfileImage}
-                    id="file-input"
-                    type="file"
-                  />
-                </div>
               <div className="row">
               <div className="col-sm-12  col-md-4 mb-6">
                   <Form.Group>
@@ -143,7 +121,7 @@ function SubServicesModal() {
                     </Form.Label>
                     <Select
                       className="custom-select-box"
-                      value={subServices?.find(
+                      value={services?.find(
                         (g) => g._id === subServicesFormik.values?.serviceId
                       )}
                       name="services"
@@ -153,7 +131,7 @@ function SubServicesModal() {
                       onChange={(v) => {
                         subServicesFormik.setFieldValue("serviceId", v?._id);
                       }}
-                      options={subServices}
+                      options={services}
                     />
                   </Form.Group>
                   {subServicesFormik.errors.serviceId && subServicesFormik.touched.serviceId && (

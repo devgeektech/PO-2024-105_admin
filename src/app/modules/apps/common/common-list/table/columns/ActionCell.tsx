@@ -16,7 +16,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { conFirmMessage } from "../../../../../../../utils/shared";
 
-
 import { Dropdown } from "react-bootstrap";
 import ThreeDotsIcon from "../../../../../../../_metronic/assets/logo/ThreeDotsIcon";
 import { Link } from "react-router-dom";
@@ -87,30 +86,49 @@ const ActionCell: FC<Props> = ({ user }) => {
       if (result.isConfirmed) {
         if (sharedActions.id === "Event") {
           setTimeout(() => {
-            dispatch(deleteEvent({ id: user?._id, selectedPage: sharedActions.selectedPage }));
+            dispatch(
+              deleteEvent({
+                id: user?._id,
+                selectedPage: sharedActions.selectedPage,
+              })
+            );
           }, 100);
         } else if (sharedActions.id === "User") {
           setTimeout(() => {
-            dispatch(deleteUser({ id: user?._id, selectedPage: sharedActions.selectedPage }));
+            dispatch(
+              deleteUser({
+                id: user?._id,
+                selectedPage: sharedActions.selectedPage,
+              })
+            );
           }, 100);
         } else if (sharedActions.id === "Service") {
           setTimeout(() => {
-            dispatch(deleteService({ id: user?._id, selectedPage: sharedActions.selectedPage }));
+            dispatch(
+              deleteService({
+                id: user?._id,
+                selectedPage: sharedActions.selectedPage,
+              })
+            );
           }, 100);
         }
-        }
-        else if (sharedActions.id === "WellnessTypes") {
-          setTimeout(() => {
-            dispatch(deleteWellnessType({ id: user?._id, selectedPage: sharedActions.selectedPage }));
-          }, 100);
-        }    
         else if (sharedActions.id === "subServices") {
           setTimeout(() => {
             dispatch(deleteSubService({ id: user?._id, selectedPage: sharedActions.selectedPage }));
           }, 100);
         }  
+        else if (sharedActions.id === "WellnessTypes") {
+          setTimeout(() => {
+            dispatch(
+              deleteWellnessType({
+                id: user?._id,
+                selectedPage: sharedActions.selectedPage,
+              })
+            );
+          }, 100);
+        }
       }
-    );
+    });
   };
 
   return (
@@ -129,17 +147,25 @@ const ActionCell: FC<Props> = ({ user }) => {
                   className="menu-link justify-content-start px-3 btn  btn-active-light-primary btn-sm"
                   onClick={openUserDetailsModal}
                 >
-                  <img src={toAbsoluteUrl('/media/avatars/detailIcon.png')} className="img-class" alt='img' />
+                  <img
+                    src={toAbsoluteUrl("/media/avatars/detailIcon.png")}
+                    className="img-class"
+                    alt="img"
+                  />
                   Details
                 </Link>
               )}
-              {(sharedActions.id !== "Task" || (sharedActions.id === "Task" && user.status !== 'completed')) && (<Link
-                to={"#"}
-                className="menu-link justify-content-start px-3 btn  btn-active-light-primary btn-sm"
-                onClick={openEditModal}
-              >
-                <KTIcon iconName="pencil" className="fs-2" /> Edit
-              </Link>)}
+              {(sharedActions.id !== "Task" ||
+                (sharedActions.id === "Task" &&
+                  user.status !== "completed")) && (
+                <Link
+                  to={"#"}
+                  className="menu-link justify-content-start px-3 btn  btn-active-light-primary btn-sm"
+                  onClick={openEditModal}
+                >
+                  <KTIcon iconName="pencil" className="fs-2" /> Edit
+                </Link>
+              )}
               <Link
                 to={"#"}
                 className="menu-link px-3 btn justify-content-start  btn-active-light-primary btn-sm"
