@@ -3,11 +3,14 @@ import { userList } from "./features/user/userSlice";
 import { eventList } from "./features/event/eventSlice";
 import logger from "redux-logger";
 import {sharedSlice} from "./features/shared/sharedSlice"
+import { serviceList } from "./features/service/serviceSlice";
+
 export const store = configureStore({
   reducer: {
     userList: userList.reducer,
     eventList: eventList.reducer,
     sharedActions: sharedSlice.reducer,
+    serviceList: serviceList.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

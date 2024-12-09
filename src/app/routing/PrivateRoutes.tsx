@@ -5,6 +5,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import { getCSSVariableValue } from "../../_metronic/assets/ts/_utils";
 import { WithChildren } from "../../_metronic/helpers";
 import EventPage from "../modules/apps/events/EventPage";
+import ServicePage from "../modules/apps/services/ServicePage";
 const PrivateRoutes = () => {
   const UserPage = lazy(() => import("../modules/apps/users/UserPage"));
   return (
@@ -31,6 +32,17 @@ const PrivateRoutes = () => {
             }
           />
           <Route path="*" element={<Navigate to="/events/list" />} />
+
+          <Route
+            path="services/*"
+            element={
+              <SuspensedView>
+                <ServicePage />
+              </SuspensedView>
+            }
+          />
+          <Route path="*" element={<Navigate to="/services/list" />} />
+
         </Route>
       </Routes>
     </>
