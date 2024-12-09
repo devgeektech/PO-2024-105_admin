@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getEvents } from "./_eventAction";
+import { getSubServices } from "./_subServicesAction";
 
 const initialState: any = {
   data: [],
@@ -10,17 +10,17 @@ const initialState: any = {
   totalRecord: 0,
 };
 
-export const eventList = createSlice({
-  name: "eventList",
+export const subServicesList = createSlice({
+  name: "subServices",
   initialState: initialState,
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(getEvents.pending, (state) => {
+      .addCase(getSubServices.pending, (state) => {
         state.isLoading = true;
         state.isSuccess = false;
       })
-      .addCase(getEvents.fulfilled, (state, { payload }) => {
+      .addCase(getSubServices.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.data = payload.data||[];
@@ -28,7 +28,7 @@ export const eventList = createSlice({
         state.responseCode = payload.responseCode
         state.totalRecord = payload.totalRecord || 0
       })
-      .addCase(getEvents.rejected, (state, { payload }) => {
+      .addCase(getSubServices.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.errorMessage = payload;

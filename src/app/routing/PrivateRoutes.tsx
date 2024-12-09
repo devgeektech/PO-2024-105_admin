@@ -6,6 +6,8 @@ import { getCSSVariableValue } from "../../_metronic/assets/ts/_utils";
 import { WithChildren } from "../../_metronic/helpers";
 import EventPage from "../modules/apps/events/EventPage";
 import ServicePage from "../modules/apps/services/ServicePage";
+import WellnessTypesPage from "../modules/apps/wellnessTypes/WellnessTypesPage";
+import SubServicesPage from "../modules/apps/subServices/SubServicesPage";
 const PrivateRoutes = () => {
   const UserPage = lazy(() => import("../modules/apps/users/UserPage"));
   return (
@@ -22,6 +24,28 @@ const PrivateRoutes = () => {
             }
           />
           <Route path="*" element={<Navigate to="/users/list" />} />
+
+          <Route
+            path="wellnessTypes/*"
+            element={
+              <SuspensedView>
+                <WellnessTypesPage />
+              </SuspensedView>
+            }
+          />
+          <Route path="*" element={<Navigate to="/wellnessTypes/list" />} />
+
+          <Route path="*" element={<Navigate to="/users/list" />} />
+
+          <Route
+            path="subServices/*"
+            element={
+              <SuspensedView>
+                <SubServicesPage />
+              </SuspensedView>
+            }
+          />
+          <Route path="*" element={<Navigate to="/subServices/list" />} />
 
           <Route
             path="events/*"

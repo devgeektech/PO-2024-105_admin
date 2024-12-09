@@ -5,12 +5,16 @@ import logger from "redux-logger";
 import {sharedSlice} from "./features/shared/sharedSlice"
 import { serviceList } from "./features/service/serviceSlice";
 
+import { wellnessTypesList } from "./features/wellnessTypes/wellnessTypesSlice";
+import { subServicesList } from "./features/subServices/subServicesSlice";
 export const store = configureStore({
   reducer: {
     userList: userList.reducer,
     eventList: eventList.reducer,
     sharedActions: sharedSlice.reducer,
     serviceList: serviceList.reducer,
+    wellnessTypesList : wellnessTypesList.reducer,
+    subServices: subServicesList.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

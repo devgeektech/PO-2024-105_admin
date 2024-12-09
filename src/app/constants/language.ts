@@ -175,7 +175,7 @@ export const LANG={
     BLOOD_GROUP:"Blutgruppe",
     PROFILE_UPDATED_SUCCESSFULLY:"Profil erfolgreich aktualisiert.",
     NO_FRIENDS_AVAILABLE:"Keine Freunde verfügbar",
-    DESCRIPTION:"Beschreibung",
+    DESCRIPTION:"Description",
     MEMBERS_DETAIL:"Mitgliederdetails",
     EVENT_TYPE:"Ereignistyp",
     EVENT_DURATION:"Veranstaltungsdauer",
@@ -224,9 +224,11 @@ export const LANG={
     REQUEST_SENDED:"Anfrage gesendet",
     ADD:"Hinzufügen",
     USER:"Benutzer",
-    CHANGE:"Ändern",
+    CHANGE:"Change",
     ROLE:"Rolle",
     CANCEL:"Stornieren",
     LIMIT_IS_EXCEEDED_FORM_MAX_LIMIT:"Der Grenzwert wurde vom maximalen Grenzwert überschritten.",
-    MEMBERS_IS_REQUIRED:"Mitglieder sind erforderlich."
+    MEMBERS_IS_REQUIRED:"Mitglieder sind erforderlich.",
+
+    //
 }

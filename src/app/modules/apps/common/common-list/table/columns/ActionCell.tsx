@@ -7,9 +7,11 @@ import {
   setFormDetails,
   setForumModalStatus,
   setRoomModalStatus,
+  setSubservicesModalStatus,
   setTaskModalStatus,
   setUserModalStatus,
   setUserShowModalStatus,
+  setWellnessTypesModalStatus,
 } from "../../../../../../../redux/features/shared/sharedSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { conFirmMessage } from "../../../../../../../utils/shared";
@@ -22,6 +24,8 @@ import { deleteUser } from "../../../../../../../redux/features/user/_userAction
 import { deleteEvent } from "../../../../../../../redux/features/event/_eventAction";
 import { KTIcon, toAbsoluteUrl } from "../../../../../../../_metronic/helpers";
 import { deleteService } from "../../../../../../../redux/features/service/_serviceAction";
+import { deleteWellnessType } from "../../../../../../../redux/features/wellnessTypes/_wellnessTypesAction";
+import { deleteSubService } from "../../../../../../../redux/features/subServices/_subServicesAction";
 
 type Props = {
   user: any;
@@ -54,6 +58,12 @@ const ActionCell: FC<Props> = ({ user }) => {
         break;
       case "Forum":
         dispatch(setForumModalStatus(true));
+        break;
+      case "WellnessTypes":
+        dispatch(setWellnessTypesModalStatus(true));
+        break;
+      case "subServices":
+        dispatch(setSubservicesModalStatus(true));
         break;
       default:
     }
@@ -88,8 +98,19 @@ const ActionCell: FC<Props> = ({ user }) => {
             dispatch(deleteService({ id: user?._id, selectedPage: sharedActions.selectedPage }));
           }, 100);
         }
+        }
+        else if (sharedActions.id === "WellnessTypes") {
+          setTimeout(() => {
+            dispatch(deleteWellnessType({ id: user?._id, selectedPage: sharedActions.selectedPage }));
+          }, 100);
+        }    
+        else if (sharedActions.id === "subServices") {
+          setTimeout(() => {
+            dispatch(deleteSubService({ id: user?._id, selectedPage: sharedActions.selectedPage }));
+          }, 100);
+        }  
       }
-    });
+    );
   };
 
   return (
