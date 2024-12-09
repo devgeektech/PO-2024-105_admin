@@ -9,8 +9,6 @@ import { setId } from "../../../../redux/features/shared/sharedSlice";
 import { WellnessTypesModal } from "./WellnessTypesModal";
 import './style.scss';
 import { UserListHeader } from "../common/common-list/components/header/UserListHeader";
-import { getEvents } from "../../../../redux/features/event/_eventAction";
-import { eventsColumns } from "../common/common-list/table/columns/_eventColumns";
 import { wellnessTypesColumns } from "../common/common-list/table/columns/_wellnessTypesColumns";
 import { getWellnessTypes } from "../../../../redux/features/wellnessTypes/_wellnessTypesAction";
 const WellnessTypeList = () => {
