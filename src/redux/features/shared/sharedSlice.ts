@@ -7,6 +7,7 @@ const initialState: any = {
   userDetailsModal: false,
   userShowDetailsModal: false,
   eventDetailsModal: false,
+  serviceDetailsModal: false,
   roomDetailsModal: false,
   bookingDetailsModal: false,
   taskDetailsModal: false,
@@ -47,6 +48,9 @@ export const sharedSlice = createSlice({
     },
     setEventModalStatus: (state, { payload }) => {
       state.eventDetailsModal = payload;
+    },
+    setServiceModalStatus:  (state, { payload }) => {
+      state.serviceDetailsModal = payload;
     },
     setBookingModalStatus: (state, { payload }) => {
       state.bookingDetailsModal = payload;
@@ -90,6 +94,7 @@ export const {
   setCategoryModalStatus,
   setUserModalStatus,
   setEventModalStatus,
+  setServiceModalStatus,
   setRoomModalStatus,
   setBookingModalStatus,
   setEventDetailModalStatus,

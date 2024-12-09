@@ -1,4 +1,6 @@
 export const LANG={
+    SERVICE_NAME_REQUIRED: "Service name required",
+
     ROLE_IS_REQUIRED: "Rolle ist erforderlich",
     ALREADY_SELECTED_IN_TEAM_B:"Bereits in Team B ausgewählt",
     ALREADY_SELECTED_IN_TEAM_A:"Bereits in Team A ausgewählt",

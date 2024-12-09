@@ -21,16 +21,12 @@ export const serviceList = createSlice({
         state.isSuccess = false;
       })
       .addCase(getServices.fulfilled, (state, { payload }) => {
-        console.log("object",payload)
         state.isLoading = false;
         state.isSuccess = true;
         state.data = payload.data||[];
         state.responseMessage = payload.responseMessage;
         state.responseCode = payload.responseCode;
-        state.totalRecord = payload.totalRecord || 0;
-
-        console.log('state.data >>>>> ',state.data);
-        
+        state.totalRecord = payload.totalRecord || 0;        
       })
       .addCase(getServices.rejected, (state, { payload }) => {
         state.isLoading = false;

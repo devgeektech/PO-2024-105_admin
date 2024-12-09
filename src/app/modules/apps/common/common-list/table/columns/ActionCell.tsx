@@ -2,11 +2,10 @@
 import { FC } from "react";
 import {
   setBookingModalStatus,
-  setCategoryModalStatus,
   setEventModalStatus,
+  setServiceModalStatus,
   setFormDetails,
   setForumModalStatus,
-  setModalStatus,
   setRoomModalStatus,
   setTaskModalStatus,
   setUserModalStatus,
@@ -22,6 +21,7 @@ import { Link } from "react-router-dom";
 import { deleteUser } from "../../../../../../../redux/features/user/_userAction";
 import { deleteEvent } from "../../../../../../../redux/features/event/_eventAction";
 import { KTIcon, toAbsoluteUrl } from "../../../../../../../_metronic/helpers";
+import { deleteService } from "../../../../../../../redux/features/service/_serviceAction";
 
 type Props = {
   user: any;
@@ -39,6 +39,9 @@ const ActionCell: FC<Props> = ({ user }) => {
         break;
       case "Event":
         dispatch(setEventModalStatus(true));
+        break;
+      case "Service":
+        dispatch(setServiceModalStatus(true));
         break;
       case "Booking":
         dispatch(setBookingModalStatus(true));
@@ -80,7 +83,11 @@ const ActionCell: FC<Props> = ({ user }) => {
           setTimeout(() => {
             dispatch(deleteUser({ id: user?._id, selectedPage: sharedActions.selectedPage }));
           }, 100);
-        }  
+        } else if (sharedActions.id === "Service") {
+          setTimeout(() => {
+            dispatch(deleteService({ id: user?._id, selectedPage: sharedActions.selectedPage }));
+          }, 100);
+        }
       }
     });
   };
@@ -105,7 +112,7 @@ const ActionCell: FC<Props> = ({ user }) => {
                   Details
                 </Link>
               )}
-              {(sharedActions.id !== "Task" || (sharedActions.id === "Task" && user.status != 'completed')) && (<Link
+              {(sharedActions.id !== "Task" || (sharedActions.id === "Task" && user.status !== 'completed')) && (<Link
                 to={"#"}
                 className="menu-link justify-content-start px-3 btn  btn-active-light-primary btn-sm"
                 onClick={openEditModal}

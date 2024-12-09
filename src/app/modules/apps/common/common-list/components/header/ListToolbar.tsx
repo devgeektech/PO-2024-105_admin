@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { KTIcon } from '../../../../../../../_metronic/helpers'
-import { setBookingModalStatus, setEventModalStatus, setForumModalStatus, setRoomModalStatus, setTaskModalStatus, setUserModalStatus } from '../../../../../../../redux/features/shared/sharedSlice';
+import { setEventModalStatus, setServiceModalStatus, setUserModalStatus } from '../../../../../../../redux/features/shared/sharedSlice';
 
 const UsersListToolbar = () => {
   const sharedActions = useSelector((state: any) => state.sharedActions);
@@ -14,6 +14,9 @@ const UsersListToolbar = () => {
       case 'Event':
         dispatch(setEventModalStatus(true))
         break;
+      case 'Service':
+        dispatch(setServiceModalStatus(true))
+        break;
       default:
     }
   }
@@ -21,7 +24,7 @@ const UsersListToolbar = () => {
   return (
     <>
       {(sharedActions.id === "User" || sharedActions.id === "Event" || sharedActions.id === "Booking"
-        || sharedActions.id === "Room" || sharedActions.id === "Task" || sharedActions.id === "Forum"
+        || sharedActions.id === "Room" || sharedActions.id === "Task" || sharedActions.id === "Forum" || sharedActions.id === "Service"
       ) && <div className='d-flex justify-content-end' data-kt-user-table-toolbar='base'>
           <button type='button' className='btn btn-primary' onClick={openAddUserModal}>
             <KTIcon iconName='plus' className='fs-2' />
