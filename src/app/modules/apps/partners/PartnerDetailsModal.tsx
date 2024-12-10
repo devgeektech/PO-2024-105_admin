@@ -2,13 +2,15 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setFiles,
-  setFormDetails,
+  setPartnerDetails,
   setPartnerShowModalStatus,
 } from "../../../../redux/features/shared/sharedSlice";
 
 function PartnerDetailsModal() {
   const dispatch: any = useDispatch();
   const sharedActions: any = useSelector((state: any) => state.sharedActions);
+  console.log('sharedActions ========== ', sharedActions);
+  
 
   const download = (filename: any) => {
     const a = document.createElement("a");
@@ -21,7 +23,7 @@ function PartnerDetailsModal() {
 
   const closeModal = () => {
     dispatch(setPartnerShowModalStatus(false));
-    dispatch(setFormDetails({}));
+    dispatch(setPartnerDetails({}));
     dispatch(setFiles([]));
   };
 
@@ -45,108 +47,108 @@ function PartnerDetailsModal() {
                 <div className="half50">
                   <p>
                     <strong>Name des Kontoinhabers:</strong>{" "}
-                    {sharedActions.formDetails?.accountHolder || "N/A"}
+                    {sharedActions.partnerDetails?.accountHolder || "N/A"}
                   </p>
                   <p>
                     <strong>Bankverbindung:</strong>{" "}
-                    {sharedActions.formDetails?.bankName || "N/A"}
+                    {sharedActions.partnerDetails?.bankName || "N/A"}
                   </p>
                   <p>
                     <strong>BIC:</strong>{" "}
-                    {sharedActions.formDetails?.bic || "N/A"}
+                    {sharedActions.partnerDetails?.bic || "N/A"}
                   </p>
                   <p>
                     <strong>IBAN:</strong>{" "}
-                    {sharedActions.formDetails?.iban || "N/A"}
+                    {sharedActions.partnerDetails?.iban || "N/A"}
                   </p>
                   <p>
                     <strong>Approved:</strong>{" "}
-                    {sharedActions.formDetails?.approved ? "Yes" : "No"}
+                    {sharedActions.partnerDetails?.approved ? "Yes" : "No"}
                   </p>
                   <p>
                     <strong>On Vocation:</strong>{" "}
-                    {sharedActions.formDetails?.onVocation ? "Yes" : "No"}
+                    {sharedActions.partnerDetails?.onVocation ? "Yes" : "No"}
                   </p>
                   <p>
                     <strong>Vorname:</strong>{" "}
-                    {sharedActions.formDetails?.firstName || "N/A"}
+                    {sharedActions.partnerDetails?.firstName || "N/A"}
                   </p>
                   <p>
                     <strong>Nachname:</strong>{" "}
-                    {sharedActions.formDetails?.lastName || "N/A"}
+                    {sharedActions.partnerDetails?.lastName || "N/A"}
                   </p>
                   <p>
                     <strong>Email:</strong>{" "}
-                    {sharedActions.formDetails?.email || "N/A"}
+                    {sharedActions.partnerDetails?.email || "N/A"}
                   </p>
                   <p>
                     <strong>Telefon:</strong>{" "}
-                    {sharedActions.formDetails?.phone || "N/A"}
+                    {sharedActions.partnerDetails?.phone || "N/A"}
                   </p>
                   <p>
                     <strong>Geschlecht:</strong>{" "}
-                    {sharedActions.formDetails?.gender || "N/A"}
+                    {sharedActions.partnerDetails?.gender || "N/A"}
                   </p>
                   <p>
                     <strong>Date of Birth:</strong>{" "}
                     {new Date(
-                      sharedActions.formDetails?.dob
+                      sharedActions.partnerDetails?.dob
                     ).toLocaleDateString() || "N/A"}
                   </p>
                   <p>
                     <strong>Stadt:</strong>{" "}
-                    {sharedActions.formDetails?.city || "N/A"}
+                    {sharedActions.partnerDetails?.city || "N/A"}
                   </p>
                   <p>
                     <strong>Straße:</strong>{" "}
-                    {sharedActions.formDetails?.street || "N/A"}
+                    {sharedActions.partnerDetails?.street || "N/A"}
                   </p>
                   <p>
                     <strong>Hausnummer:</strong>{" "}
-                    {sharedActions.formDetails?.houseNumber || "N/A"}
+                    {sharedActions.partnerDetails?.houseNumber || "N/A"}
                   </p>
                   <p>
                     <strong>PLZ:</strong>{" "}
-                    {sharedActions.formDetails?.zipCode || "N/A"}
+                    {sharedActions.partnerDetails?.zipCode || "N/A"}
                   </p>
                   <p>
                     <strong>Nationalität:</strong>{" "}
-                    {sharedActions.formDetails?.nationality || "N/A"}
+                    {sharedActions.partnerDetails?.nationality || "N/A"}
                   </p>
                   <p>
                     <strong>Abonnement:</strong>{" "}
-                    {sharedActions.formDetails?.subscription || "N/A"}
+                    {sharedActions.partnerDetails?.subscription || "N/A"}
                   </p>
                   <p>
                     <strong>Type:</strong>{" "}
-                    {sharedActions.formDetails?.type || "N/A"}
+                    {sharedActions.partnerDetails?.type || "N/A"}
                   </p>
                   <p>
                     <strong>Vorname (Erziehungsberechtigter / Eltern):</strong>{" "}
-                    {sharedActions.formDetails?.parentFirstName || "N/A"}
+                    {sharedActions.partnerDetails?.parentFirstName || "N/A"}
                   </p>
                   <p>
                     <strong>Nachname (Erziehungsberechtigter / Eltern):</strong>{" "}
-                    {sharedActions.formDetails?.parentLastName || "N/A"}
+                    {sharedActions.partnerDetails?.parentLastName || "N/A"}
                   </p>
                   <p>
                     <strong>Email (Erziehungsberechtigter / Eltern):</strong>{" "}
-                    {sharedActions.formDetails?.parentEmail || "N/A"}
+                    {sharedActions.partnerDetails?.parentEmail || "N/A"}
                   </p>
                   <p>
                     <strong>Telefon (Erziehungsberechtigter / Eltern):</strong>{" "}
-                    {sharedActions.formDetails?.parentPhone || "N/A"}
+                    {sharedActions.partnerDetails?.parentPhone || "N/A"}
                   </p>
                   <p>
                     <strong>Geburtsort:</strong>{" "}
-                    {sharedActions.formDetails?.birthPlaceCity || "N/A"}
+                    {sharedActions.partnerDetails?.birthPlaceCity || "N/A"}
                   </p>
                   <p>
                     <strong>Geburtsland:</strong>{" "}
-                    {sharedActions.formDetails?.birthPlaceCountry || "N/A"}
+                    {sharedActions.partnerDetails?.birthPlaceCountry || "N/A"}
                   </p>
 
-                  {sharedActions.formDetails?.birthCertificateDoc && (
+                  {sharedActions.partnerDetails?.birthCertificateDoc && (
                     <p>
                       <div className="p-2 d-flex justify-content-between w-100 align-items-center">
                         <strong>Kopie der Geburtsurkunde:</strong>
@@ -154,7 +156,7 @@ function PartnerDetailsModal() {
                           className="iconWrap"
                           onClick={() =>
                             download(
-                              sharedActions.formDetails?.birthCertificateDoc
+                              sharedActions.partnerDetails?.birthCertificateDoc
                             )
                           }
                         >
@@ -174,7 +176,7 @@ function PartnerDetailsModal() {
                     </p>
                   )}
 
-                  {sharedActions.formDetails?.matchPermissionDoc && (
+                  {sharedActions.partnerDetails?.matchPermissionDoc && (
                     <p>
                       <div className="p-2 d-flex justify-content-between w-100 align-items-center">
                         <strong>
@@ -185,7 +187,7 @@ function PartnerDetailsModal() {
                           className="iconWrap"
                           onClick={() =>
                             download(
-                              sharedActions.formDetails?.matchPermissionDoc
+                              sharedActions.partnerDetails?.matchPermissionDoc
                             )
                           }
                         >
@@ -204,7 +206,7 @@ function PartnerDetailsModal() {
                       </div>
                     </p>
                   )}
-                  {sharedActions.formDetails?.doctorCerificateDoc && (
+                  {sharedActions.partnerDetails?.doctorCerificateDoc && (
                     <p>
                       <div className="p-2 d-flex justify-content-between w-100 align-items-center">
                         <strong>Ärztliches Attest:</strong>
@@ -212,7 +214,7 @@ function PartnerDetailsModal() {
                           className="iconWrap"
                           onClick={() =>
                             download(
-                              sharedActions.formDetails?.doctorCerificateDoc
+                              sharedActions.partnerDetails?.doctorCerificateDoc
                             )
                           }
                         >

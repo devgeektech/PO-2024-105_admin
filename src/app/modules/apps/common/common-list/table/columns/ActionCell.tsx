@@ -13,10 +13,11 @@ import {
   setUserShowModalStatus,
   setWellnessTypesModalStatus,
   setPartnerModalStatus,
+  setPartnerShowModalStatus,
+  setPartnerDetails,
 } from "../../../../../../../redux/features/shared/sharedSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { conFirmMessage } from "../../../../../../../utils/shared";
-
 import { Dropdown } from "react-bootstrap";
 import ThreeDotsIcon from "../../../../../../../_metronic/assets/logo/ThreeDotsIcon";
 import { Link } from "react-router-dom";
@@ -37,6 +38,7 @@ const ActionCell: FC<Props> = ({ user }) => {
 
   const openEditModal = () => {
     dispatch(setFormDetails(user));
+
     switch (sharedActions.id) {
       case "User":
         dispatch(setUserModalStatus(true));
@@ -71,9 +73,22 @@ const ActionCell: FC<Props> = ({ user }) => {
       default:
     }
   };
+
   const openUserDetailsModal = () => {
-    dispatch(setFormDetails(user));
-    dispatch(setUserShowModalStatus(true));
+    if(sharedActions.id != 'Partner') dispatch(setFormDetails(user));
+    else{
+      dispatch(setPartnerDetails(user));
+    }
+
+    switch (sharedActions.id) {
+      case "User":
+        dispatch(setUserShowModalStatus(true));
+        break;
+      case "Partner":
+        dispatch(setPartnerShowModalStatus(true));
+        break;
+      default:
+    }
   };
 
   const handleDelete = (itemId) => {
@@ -134,9 +149,6 @@ const ActionCell: FC<Props> = ({ user }) => {
       }
     });
   };
-
-  console.log('user?.role +++++++++ ', user?.role, '=== sharedActions.id ', sharedActions.id);
-
 
   return (
     <>
