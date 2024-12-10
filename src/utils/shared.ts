@@ -1,7 +1,7 @@
 import "./style.scss";
 import { Slide, toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { getParnters } from "../redux/features/partner/_partnerAction";
+import { getPartners } from "../redux/features/partner/_partnerAction";
 import { getUsers } from "../redux/features/user/_userAction";
 import { getEvents } from "../redux/features/event/_eventAction";
 import { getServices } from "../redux/features/service/_serviceAction";
@@ -10,9 +10,11 @@ import { getWellnessTypes } from "../redux/features/wellnessTypes/_wellnessTypes
 
 export const commonSwtichCases = (id: any, searchValue: any, dispatch: any) => {
     searchValue = encodeURIComponent(searchValue)
+    console.log('id >>>> ', id);
+    
     switch (id) {
-        case 'PARTNER':
-            dispatch(getParnters({ search: searchValue.trim() }))
+        case 'Partner':
+            dispatch(getPartners({ search: searchValue.trim(), page: 1, limit: 10  }))
             break;
         case 'User':
             dispatch(getUsers({ search: searchValue.trim(), page: 1, limit: 10 }))

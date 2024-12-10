@@ -12,6 +12,7 @@ import {
   setUserModalStatus,
   setUserShowModalStatus,
   setWellnessTypesModalStatus,
+  setPartnerModalStatus,
 } from "../../../../../../../redux/features/shared/sharedSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { conFirmMessage } from "../../../../../../../utils/shared";
@@ -63,6 +64,9 @@ const ActionCell: FC<Props> = ({ user }) => {
         break;
       case "subServices":
         dispatch(setSubservicesModalStatus(true));
+        break;
+      case "Partner":
+        dispatch(setPartnerModalStatus(true));
         break;
       default:
     }
@@ -116,7 +120,7 @@ const ActionCell: FC<Props> = ({ user }) => {
           setTimeout(() => {
             dispatch(deleteSubService({ id: user?._id, selectedPage: sharedActions.selectedPage }));
           }, 100);
-        }  
+        }
         else if (sharedActions.id === "WellnessTypes") {
           setTimeout(() => {
             dispatch(
@@ -131,6 +135,9 @@ const ActionCell: FC<Props> = ({ user }) => {
     });
   };
 
+  console.log('user?.role +++++++++ ', user?.role, '=== sharedActions.id ', sharedActions.id);
+
+
   return (
     <>
       <div className="d-flex align-items-center">
@@ -141,7 +148,7 @@ const ActionCell: FC<Props> = ({ user }) => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              {user?.role?.includes("member") && (
+              {(sharedActions.id === "Partner") && (
                 <Link
                   to={"#"}
                   className="menu-link justify-content-start px-3 btn  btn-active-light-primary btn-sm"
@@ -155,7 +162,7 @@ const ActionCell: FC<Props> = ({ user }) => {
                   Details
                 </Link>
               )}
-              {(
+              {(sharedActions.id !== "Partner") && (
                 <Link
                   to={"#"}
                   className="menu-link justify-content-start px-3 btn  btn-active-light-primary btn-sm"
@@ -164,14 +171,16 @@ const ActionCell: FC<Props> = ({ user }) => {
                   <KTIcon iconName="pencil" className="fs-2" /> Edit
                 </Link>
               )}
-              <Link
-                to={"#"}
-                className="menu-link px-3 btn justify-content-start  btn-active-light-primary btn-sm"
-                data-kt-users-table-filter="delete_row"
-                onClick={async () => await handleDelete(user._id)}
-              >
-                <KTIcon iconName="trash" className="fs-2 text-danger" /> Delete
-              </Link>
+              {(sharedActions.id !== "Partner") && (
+                <Link
+                  to={"#"}
+                  className="menu-link px-3 btn justify-content-start  btn-active-light-primary btn-sm"
+                  data-kt-users-table-filter="delete_row"
+                  onClick={async () => await handleDelete(user._id)}
+                >
+                  <KTIcon iconName="trash" className="fs-2 text-danger" /> Delete
+                </Link>
+              )}
             </Dropdown.Menu>
           </Dropdown>
 

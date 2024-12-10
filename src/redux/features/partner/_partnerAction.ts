@@ -2,15 +2,15 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { setFiles, setPartnerProfileImages } from "../shared/sharedSlice";
 import { notify } from "../../../utils/shared";
-const API_URL = process.env.REACT_APP_LISTING_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 const API_URL_AUTH = process.env.REACT_APP_AUTH_API_URL;
-const GET_ALL_PARTNER = `${API_URL}/getAllAdminPartners`;
+const GET_ALL_PARTNER = `${API_URL}/adminWeb/partners`;
 const VERIFY_PARTNER = `${API_URL_AUTH}/verifyPartnerByAdmin`;
 const COMMON_FILE_UPLOAD = `${API_URL_AUTH}/fileUpload`;
 const UPDATE_PARTNER_DETAILS = `${API_URL_AUTH}/updatePartnerAccount`;
 
-export const getParnters = createAsyncThunk(
-  "getParnters",
+export const getPartners = createAsyncThunk(
+  "getPartners",
   async (values: any, { rejectWithValue, dispatch }) => {
     try {
       const { page, limit, search = '' } = values

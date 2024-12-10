@@ -6,6 +6,8 @@ const initialState: any = {
   categoryModal: false,
   userDetailsModal: false,
   userShowDetailsModal: false,
+  partnerShowDetailsModal: false,
+  partnerDetailsModal: false,
   eventDetailsModal: false,
   serviceDetailsModal: false,
   roomDetailsModal: false,
@@ -47,6 +49,12 @@ export const sharedSlice = createSlice({
     },
     setUserShowModalStatus: (state, { payload }) => {
       state.userShowDetailsModal = payload
+    },
+    setPartnerShowModalStatus: (state, { payload }) => {
+      state.partnerShowDetailsModal = payload
+    },
+    setPartnerModalStatus: (state, { payload }) => {
+      state.partnerDetailsModal = payload
     },
     setEventModalStatus: (state, { payload }) => {
       state.eventDetailsModal = payload;
@@ -108,6 +116,8 @@ export const {
   setFiles,
   setPartnerProfileImages,
   setUserShowModalStatus,
+  setPartnerShowModalStatus,
+  setPartnerModalStatus,
   setTaskModalStatus,
   setForumModalStatus,
   setSelectedPage,

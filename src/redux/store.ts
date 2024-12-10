@@ -7,6 +7,7 @@ import { serviceList } from "./features/service/serviceSlice";
 
 import { wellnessTypesList } from "./features/wellnessTypes/wellnessTypesSlice";
 import { subServicesList } from "./features/subServices/subServicesSlice";
+import { partnerList } from "./features/partner/partnerSlice";
 export const store = configureStore({
   reducer: {
     userList: userList.reducer,
@@ -14,7 +15,8 @@ export const store = configureStore({
     sharedActions: sharedSlice.reducer,
     serviceList: serviceList.reducer,
     wellnessTypesList : wellnessTypesList.reducer,
-    subServices: subServicesList.reducer
+    subServices: subServicesList.reducer,
+    partnerList: partnerList.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

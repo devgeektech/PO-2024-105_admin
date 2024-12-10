@@ -4,23 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setFiles,
   setFormDetails,
-  setUserModalStatus,
+  setPartnerModalStatus,
 } from "../../../../redux/features/shared/sharedSlice";
 import { Field, FormikProvider, useFormik } from "formik";
 import { Form } from "react-bootstrap";
 import FieldInputText from "../common/InputFeilds/InputTextField";
 import * as Yup from "yup";
-import { GENDERS, REQUIRED, ROLES } from "../../../../utils/const";
+import { GENDERS, REQUIRED } from "../../../../utils/const";
 import Select, { components } from "react-select";
 import logo from "../../../../_metronic/assets/logo/admin-logo.png";
 import {
-  addUserDetails,
-  updateUserDetails,
-} from "../../../../redux/features/user/_userAction";
+  // addParnerDetails,
+  updatePartnerDetails,
+} from "../../../../redux/features/partner/_partnerAction";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { LANG } from "../../../constants/language";
-import { NATIONALITIES } from "../../../constants/nationalities";
 import VisibilityBox from "../common/visibility-box/VisibilityBox";
 import { getAge, getFormData } from "../../../../utils";
 import DownloadIcon from "../../../icons/DownloadIcon";
@@ -34,11 +33,8 @@ const CustomMultiValueRemove = (props) => {
   return <components.MultiValueRemove {...props} />;
 };
 
-function UserModal() {
+function PartnerModal() {
   const [imageUrl, setImageUrl] = useState<any>();
-  // const nationalities = NATIONALITIES.map((n) => {
-  //   return { label: n, value: n }
-  // });
   const dispatch: any = useDispatch();
   let sharedActions: any = useSelector((state: any) => state.sharedActions);
 
@@ -112,34 +108,34 @@ function UserModal() {
     accountHolder: sharedActions.formDetails.accountHolder || ""
   };
 
-  const userFormik = useFormik({
+  const partnerFormik = useFormik({
     initialValues: formIntialValues,
     validationSchema: specialityFormValidation,
     enableReinitialize: true,
     onSubmit: (values: any, { resetForm }) => {
-      const payload={
+      const payload = {
         ...values,
         role: JSON.stringify(values.role),
-        selectedPage:sharedActions.selectedPage
+        selectedPage: sharedActions.selectedPage
       }
       const formData = getFormData(payload);
 
       if (sharedActions?.formDetails?._id) {
         formData.append("id", sharedActions.formDetails._id);
-        dispatch(updateUserDetails(formData));
+        dispatch(updatePartnerDetails(formData));
       } else {
-        dispatch(addUserDetails(formData));
+        // dispatch(addParnerDetails(formData));
       }
       dispatch(setFormDetails({}));
       setTimeout(() => {
-        dispatch(setUserModalStatus(false));
+        dispatch(setPartnerModalStatus(false));
         resetForm();
       }, 500);
     },
   });
 
   const closeModal = () => {
-    dispatch(setUserModalStatus(false));
+    dispatch(setPartnerModalStatus(false));
     dispatch(setFormDetails({}));
     dispatch(setFiles([]));
   };
@@ -147,7 +143,7 @@ function UserModal() {
   const handleChangeProfileImage = async (e: any) => {
     const selectedFile = e.target.files[0];
     const url = URL.createObjectURL(selectedFile);
-    userFormik.setFieldValue("avatar", selectedFile);
+    partnerFormik.setFieldValue("avatar", selectedFile);
     setImageUrl(url);
   };
 
@@ -155,7 +151,7 @@ function UserModal() {
     let array: any = [];
     props.forEach((item: any) => {
       array.push(item.value);
-      userFormik.setFieldValue("role", array);
+      partnerFormik.setFieldValue("role", array);
     });
   };
 
@@ -174,18 +170,18 @@ function UserModal() {
       <Modal
         backdrop="static"
         size="lg"
-        show={sharedActions.userDetailsModal}
+        show={sharedActions.partnerDetailsModal}
         onHide={closeModal}
         animation={true}
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            {!sharedActions.formDetails._id ? LANG.ADD : LANG.UPDATE} {LANG.USER}
+            {!sharedActions.formDetails._id ? LANG.ADD : LANG.UPDATE} {LANG.PARTNER}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FormikProvider value={userFormik}>
-            <Form onSubmit={userFormik.handleSubmit} method="POST">
+          <FormikProvider value={partnerFormik}>
+            <Form onSubmit={partnerFormik.handleSubmit} method="POST">
               <div className="row d-flex justify-content-between align-items-center">
                 <div className="col-sm-12  col-md-6 mb-6 image-upload position-relative">
                   <img
@@ -274,18 +270,18 @@ function UserModal() {
                     <Select
                       className="custom-select-box"
                       value={GENDERS.find(
-                        (g) => g.value === userFormik.values?.gender
+                        (g) => g.value === partnerFormik.values?.gender
                       )}
                       name="gender"
                       placeholder={LANG.SELECT + " " + LANG.GENDER}
                       onChange={(v) => {
-                        userFormik.setFieldValue("gender", v?.value);
+                        partnerFormik.setFieldValue("gender", v?.value);
                       }}
                       options={GENDERS}
                     />
                   </Form.Group>
-                  {userFormik.errors.gender && userFormik.touched.gender && (
-                    <div className="formik-errors text-danger">{`${userFormik.errors.gender}`}</div>
+                  {partnerFormik.errors.gender && partnerFormik.touched.gender && (
+                    <div className="formik-errors text-danger">{`${partnerFormik.errors.gender}`}</div>
                   )}
                 </div>
                 <div className="col-sm-12  col-md-4 mb-6">
@@ -313,15 +309,15 @@ function UserModal() {
                     />
                   </Form.Group>
                 </div>
-                <div className="col-sm-12 col-md-4 mb-6 multi-select-role">
+                {/* <div className="col-sm-12 col-md-4 mb-6 multi-select-role">
                   <Form.Group>
                     <Form.Label>
                       {LANG.ROLE} <span>*</span>
                     </Form.Label>
-                    {/* {
+                    {
                       <Select
                         closeMenuOnSelect={false}
-                        value={userFormik?.values?.role?.map(
+                        value={partnerFormik?.values?.role?.map(
                           (el) => ({
                             label: el,
                             value: el,
@@ -342,12 +338,12 @@ function UserModal() {
                         }}
                         onChange={onChange}
                       />
-                    } */}
+                    }
                   </Form.Group>
-                  {userFormik.errors.role && userFormik.touched.role && (
-                    <div className="formik-errors text-danger">{`${userFormik.errors.role}`}</div>
+                  {partnerFormik.errors.role && partnerFormik.touched.role && (
+                    <div className="formik-errors text-danger">{`${partnerFormik.errors.role}`}</div>
                   )}
-                </div>
+                </div> */}
                 <div className="col-sm-12  col-md-4 mb-6">
                   <Form.Group>
                     <Field
@@ -422,28 +418,8 @@ function UserModal() {
                     />
                   </Form.Group>
                 </div>
-                {/* <div className="col-sm-12  col-md-4 mb-6">
-                  <Form.Group>
-                    <Form.Label>
-                      {LANG.NATIONALITY} <span>*</span>
-                    </Form.Label>
-                    <Select
-                      menuPlacement="top"
-                      className="custom-select-box"
-                      value={nationalities.find((n: any) => n.value === userFormik.values?.nationality)}
-                      name="nationality"
-                      placeholder={LANG.SELECT + " " + LANG.NATIONALITY}
-                      onChange={(v: any) => {
-                        userFormik.setFieldValue("nationality", v.value);
-                      }}
-                      options={nationalities}
-                    />
-                  </Form.Group>
-                  {userFormik.errors.nationality && userFormik.touched.nationality && (
-                    <div className="formik-errors text-danger">{`${userFormik.errors.nationality}`}</div>
-                  )}
-                </div> */}
-                <VisibilityBox show={getAge(userFormik.values.dob) < 18}>
+
+                <VisibilityBox show={getAge(partnerFormik.values.dob) < 18}>
                   <div className="col-sm-12  col-md-4 mb-6">
                     <Form.Group>
                       <Field
@@ -519,193 +495,193 @@ function UserModal() {
                   </Form.Group>
                 </div>
               </div>
-              <VisibilityBox show={userFormik.values?.role?.includes('member')}>
-              {
-                sharedActions.formDetails.type === "Erstmalige Spielerlaubnis" ? <>
-                <div className="my-3 form-control">
-                  <label className="d-inline">
-                    <div className="fileUpload form-group mb-1" >
-                      <input className="d-none" accept={FILE_EXT} id="matchPermissionDoc" type="file"
-                        name="matchPermissionDoc"
-                        onChange={(ev: any) => {
-                          userFormik.setFieldValue("matchPermissionDoc", ev.target.files[0]);
-                        }}
-                      />
-                      <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                        <span className="text-black"> {userFormik.values?.matchPermissionDoc ? userFormik.values?.matchPermissionDoc?.name : LANG.APPLICATION_FOR_MATCH_PERMISSIONS}</span>
-                        <span className="iconWrap"><UploadIcon /></span>
+              <VisibilityBox show={partnerFormik.values?.role?.includes('member')}>
+                {
+                  sharedActions.formDetails.type === "Erstmalige Spielerlaubnis" ? <>
+                    <div className="my-3 form-control">
+                      <label className="d-inline">
+                        <div className="fileUpload form-group mb-1" >
+                          <input className="d-none" accept={FILE_EXT} id="matchPermissionDoc" type="file"
+                            name="matchPermissionDoc"
+                            onChange={(ev: any) => {
+                              partnerFormik.setFieldValue("matchPermissionDoc", ev.target.files[0]);
+                            }}
+                          />
+                          <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                            <span className="text-black"> {partnerFormik.values?.matchPermissionDoc ? partnerFormik.values?.matchPermissionDoc?.name : LANG.APPLICATION_FOR_MATCH_PERMISSIONS}</span>
+                            <span className="iconWrap"><UploadIcon /></span>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </> : <>
+                    <div className="my-3 form-control">
+                      <label className="d-inline">
+                        <div className="fileUpload form-group mb-1" >
+                          <input className="d-none" accept={FILE_EXT} id="clubTransferDoc" type="file"
+                            name="clubTransferDoc"
+                            onChange={(ev: any) => {
+                              partnerFormik.setFieldValue("clubTransferDoc", ev.target.files[0]);
+                            }}
+                          />
+                          <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                            <span className="text-black">
+                              {partnerFormik.values?.clubTransferDoc ? partnerFormik.values?.clubTransferDoc?.name : LANG.APPLICATION_FOR_CLUB_TRANSFER}                       </span>
+                            <span className="iconWrap"><UploadIcon /></span>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </>
+                }
+                <VisibilityBox show={partnerFormik.values?.type === 'Erstmalige Spielerlaubnis' && getAge(partnerFormik.values?.dob) < 18}>
+                  <div className="my-3 form-control">
+                    <label className="d-inline">
+                      <div className="fileUpload form-group mb-1" >
+                        <input className="d-none" accept={FILE_EXT} id="doctorCerificateDoc" type="file"
+                          name="doctorCerificateDoc"
+                          onChange={(ev: any) => {
+                            partnerFormik.setFieldValue("doctorCerificateDoc", ev.target.files[0]);
+                          }}
+                        />
+                        <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                          <span className="text-black"> {partnerFormik.values?.doctorCerificateDoc ? partnerFormik.values?.doctorCerificateDoc?.name : LANG.DOCTOR_CERTIFICATE}
+                          </span>
+                          <span className="iconWrap"><UploadIcon /></span>
+                        </div>
                       </div>
-                    </div>
-                  </label>
-                </div>
-              </> : <>
-                <div className="my-3 form-control">
-                  <label className="d-inline">
-                    <div className="fileUpload form-group mb-1" >
-                      <input className="d-none" accept={FILE_EXT} id="clubTransferDoc" type="file"
-                        name="clubTransferDoc"
-                        onChange={(ev: any) => {
-                          userFormik.setFieldValue("clubTransferDoc", ev.target.files[0]);
-                        }}
-                      />
-                      <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                        <span className="text-black">
-                          {userFormik.values?.clubTransferDoc ? userFormik.values?.clubTransferDoc?.name : LANG.APPLICATION_FOR_CLUB_TRANSFER}                       </span>
-                        <span className="iconWrap"><UploadIcon /></span>
+                    </label>
+                  </div>
+                  <div className="my-3 form-control">
+                    <label className="d-inline">
+                      <div className="fileUpload form-group mb-1" >
+                        <input className="d-none" accept={FILE_EXT} id="birthCertificateDoc" type="file"
+                          name="birthCertificateDoc"
+                          onChange={(ev: any) => {
+                            partnerFormik.setFieldValue("birthCertificateDoc", ev.target.files[0]);
+                          }}
+                        />
+                        <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                          <span className="text-black">{partnerFormik.values?.birthCertificateDoc ? partnerFormik.values?.birthCertificateDoc?.name : LANG.BIRTH_CERTIFICATE}
+                          </span>
+                          <span className="iconWrap"><UploadIcon /></span>
+                        </div>
                       </div>
-                    </div>
-                  </label>
-                </div>
-              </>
-            }
-            <VisibilityBox show={userFormik.values?.type === 'Erstmalige Spielerlaubnis' && getAge(userFormik.values?.dob) < 18}>
-              <div className="my-3 form-control">
-                <label className="d-inline">
-                  <div className="fileUpload form-group mb-1" >
-                    <input className="d-none" accept={FILE_EXT} id="doctorCerificateDoc" type="file"
-                      name="doctorCerificateDoc"
-                      onChange={(ev: any) => {
-                        userFormik.setFieldValue("doctorCerificateDoc", ev.target.files[0]);
-                      }}
-                    />
-                    <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                      <span className="text-black"> {userFormik.values?.doctorCerificateDoc ? userFormik.values?.doctorCerificateDoc?.name : LANG.DOCTOR_CERTIFICATE}
-                      </span>
-                      <span className="iconWrap"><UploadIcon /></span>
-                    </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-              <div className="my-3 form-control">
-                <label className="d-inline">
-                  <div className="fileUpload form-group mb-1" >
-                    <input className="d-none" accept={FILE_EXT} id="birthCertificateDoc" type="file"
-                      name="birthCertificateDoc"
-                      onChange={(ev: any) => {
-                        userFormik.setFieldValue("birthCertificateDoc", ev.target.files[0]);
-                      }}
-                    />
-                    <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                      <span className="text-black">{userFormik.values?.birthCertificateDoc ? userFormik.values?.birthCertificateDoc?.name : LANG.BIRTH_CERTIFICATE}
-                      </span>
-                      <span className="iconWrap"><UploadIcon /></span>
-                    </div>
+                </VisibilityBox>
+                <VisibilityBox show={partnerFormik.values?.nationality === 'Dutch' && getAge(partnerFormik.values?.dob) > 10 && getAge(partnerFormik.values?.dob) < 18}>
+                  <div className="my-3 form-control">
+                    <label className="d-inline">
+                      <div className="fileUpload form-group mb-1" >
+                        <input className="d-none" accept={FILE_EXT} id="residenceCertificateDoc" type="file"
+                          name="residenceCertificateDoc"
+                          onChange={(ev: any) => {
+                            partnerFormik.setFieldValue("residenceCertificateDoc", ev.target.files[0]);
+                          }}
+                        />
+                        <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                          <span className="text-black">{partnerFormik.values?.residenceCertificateDoc ? partnerFormik.values?.residenceCertificateDoc?.name : LANG.RESIDENCE_CERTIFICATION}
+                          </span>
+                          <span className="iconWrap"><UploadIcon /></span>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-            </VisibilityBox>
-            <VisibilityBox show={userFormik.values?.nationality === 'Dutch' && getAge(userFormik.values?.dob) > 10 && getAge(userFormik.values?.dob) < 18}>
-              <div className="my-3 form-control">
-                <label className="d-inline">
-                  <div className="fileUpload form-group mb-1" >
-                    <input className="d-none" accept={FILE_EXT} id="residenceCertificateDoc" type="file"
-                      name="residenceCertificateDoc"
-                      onChange={(ev: any) => {
-                        userFormik.setFieldValue("residenceCertificateDoc", ev.target.files[0]);
-                      }}
-                    />
-                    <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                      <span className="text-black">{userFormik.values?.residenceCertificateDoc ? userFormik.values?.residenceCertificateDoc?.name : LANG.RESIDENCE_CERTIFICATION}
-                      </span>
-                      <span className="iconWrap"><UploadIcon /></span>
-                    </div>
+                  <div className="my-3 form-control">
+                    <label className="d-inline">
+                      <div className="fileUpload form-group mb-1" >
+                        <input className="d-none" accept={FILE_EXT} id="playersParentDeclarationDoc" type="file"
+                          name="playersParentDeclarationDoc"
+                          onChange={(ev: any) => {
+                            partnerFormik.setFieldValue("playersParentDeclarationDoc", ev.target.files[0]);
+                          }}
+                        />
+                        <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                          <span className="text-black">{partnerFormik.values?.playersParentDeclarationDoc ? partnerFormik.values?.playersParentDeclarationDoc?.name : LANG.PLAYER_PARENTS_DECLARATION}
+                          </span>
+                          <span className="iconWrap"><UploadIcon /></span>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-              <div className="my-3 form-control">
-                <label className="d-inline">
-                  <div className="fileUpload form-group mb-1" >
-                    <input className="d-none" accept={FILE_EXT} id="playersParentDeclarationDoc" type="file"
-                      name="playersParentDeclarationDoc"
-                      onChange={(ev: any) => {
-                        userFormik.setFieldValue("playersParentDeclarationDoc", ev.target.files[0]);
-                      }}
-                    />
-                    <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                      <span className="text-black">{userFormik.values?.playersParentDeclarationDoc ? userFormik.values?.playersParentDeclarationDoc?.name : LANG.PLAYER_PARENTS_DECLARATION}
-                      </span>
-                      <span className="iconWrap"><UploadIcon /></span>
-                    </div>
+                </VisibilityBox>
+                <VisibilityBox show={partnerFormik.values?.nationality === 'Dutch' && getAge(partnerFormik.values?.dob) > 10}>
+                  <div className="my-3 form-control">
+                    <label className="d-inline">
+                      <div className="fileUpload form-group mb-1" >
+                        <input className="d-none" accept={FILE_EXT} id="copyOfPassportDoc" type="file"
+                          name="copyOfPassportDoc"
+                          onChange={(ev: any) => {
+                            partnerFormik.setFieldValue("copyOfPassportDoc", ev.target.files[0]);
+                          }}
+                        />
+                        <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                          <span className="text-black"> {partnerFormik.values?.copyOfPassportDoc ? partnerFormik.values?.copyOfPassportDoc?.name : LANG.COPY_OF_PASSPORT}
+                          </span>
+                          <span className="iconWrap"><UploadIcon /></span>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-            </VisibilityBox>
-            <VisibilityBox show={userFormik.values?.nationality === 'Dutch' && getAge(userFormik.values?.dob) > 10}>
-              <div className="my-3 form-control">
-                <label className="d-inline">
-                  <div className="fileUpload form-group mb-1" >
-                    <input className="d-none" accept={FILE_EXT} id="copyOfPassportDoc" type="file"
-                      name="copyOfPassportDoc"
-                      onChange={(ev: any) => {
-                        userFormik.setFieldValue("copyOfPassportDoc", ev.target.files[0]);
-                      }}
-                    />
-                    <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                      <span className="text-black"> {userFormik.values?.copyOfPassportDoc ? userFormik.values?.copyOfPassportDoc?.name : LANG.COPY_OF_PASSPORT}
-                      </span>
-                      <span className="iconWrap"><UploadIcon /></span>
-                    </div>
+                </VisibilityBox>
+                <VisibilityBox show={ARGENTINA_NATIONALITY.includes(partnerFormik.values?.nationality)}>
+                  <div className="my-3 form-control">
+                    <label className="d-inline">
+                      <div className="fileUpload form-group mb-1" >
+                        <input className="d-none" accept={FILE_EXT} id="attachmentArgentinaDoc" type="file"
+                          name="attachmentArgentinaDoc"
+                          onChange={(ev: any) => {
+                            partnerFormik.setFieldValue("attachmentArgentinaDoc", ev.target.files[0]);
+                          }}
+                        />
+                        <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                          <span className="text-black">{partnerFormik.values?.attachmentArgentinaDoc ? partnerFormik.values?.attachmentArgentinaDoc?.name : LANG.APPLICATION_ATTACHMENT_ARGETINA}
+                          </span>
+                          <span className="iconWrap"><UploadIcon /></span>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-            </VisibilityBox>
-            <VisibilityBox show={ARGENTINA_NATIONALITY.includes(userFormik.values?.nationality)}>
-              <div className="my-3 form-control">
-                <label className="d-inline">
-                  <div className="fileUpload form-group mb-1" >
-                    <input className="d-none" accept={FILE_EXT} id="attachmentArgentinaDoc" type="file"
-                    name="attachmentArgentinaDoc"
-                    onChange={(ev: any) => {
-                      userFormik.setFieldValue("attachmentArgentinaDoc", ev.target.files[0]);
-                    }}
-                     />
-                    <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                      <span className="text-black">{userFormik.values?.attachmentArgentinaDoc ? userFormik.values?.attachmentArgentinaDoc?.name : LANG.APPLICATION_ATTACHMENT_ARGETINA}
-                      </span>
-                      <span className="iconWrap"><UploadIcon /></span>
-                    </div>
+                </VisibilityBox>
+                <VisibilityBox show={ISTUPNICA_OR_BRISOVNICA_NATIONALITY.includes(partnerFormik.values?.nationality)}>
+                  <div className="my-3 form-control">
+                    <label className="d-inline">
+                      <div className="fileUpload form-group mb-1" >
+                        <input className="d-none" accept={FILE_EXT} id="attachmentIstupnicaDoc" type="file"
+                          name="attachmentIstupnicaDoc"
+                          onChange={(ev: any) => {
+                            partnerFormik.setFieldValue("attachmentIstupnicaDoc", ev.target.files[0]);
+                          }}
+                        />
+                        <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                          <span className="text-black">{partnerFormik.values?.attachmentIstupnicaDoc ? partnerFormik.values?.attachmentIstupnicaDoc?.name : LANG.APPLICATION_ATTACHMENT_ISTUPNICA}
+                          </span>
+                          <span className="iconWrap"><UploadIcon /></span>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-            </VisibilityBox>
-            <VisibilityBox show={ISTUPNICA_OR_BRISOVNICA_NATIONALITY.includes(userFormik.values?.nationality)}>
-              <div className="my-3 form-control">
-                <label className="d-inline">
-                  <div className="fileUpload form-group mb-1" >
-                    <input className="d-none" accept={FILE_EXT} id="attachmentIstupnicaDoc" type="file"
-                      name="attachmentIstupnicaDoc"
-                      onChange={(ev: any) => {
-                        userFormik.setFieldValue("attachmentIstupnicaDoc", ev.target.files[0]);
-                      }}
-                    />
-                    <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                      <span className="text-black">{userFormik.values?.attachmentIstupnicaDoc ? userFormik.values?.attachmentIstupnicaDoc?.name : LANG.APPLICATION_ATTACHMENT_ISTUPNICA}
-                      </span>
-                      <span className="iconWrap"><UploadIcon /></span>
-                    </div>
+                  <div className="my-3 form-control">
+                    <label className="d-inline">
+                      <div className="fileUpload form-group mb-1" >
+                        <input className="d-none" accept={FILE_EXT} id="attachmentBrisovnicaDoc" type="file"
+                          name="attachmentBrisovnicaDoc"
+                          onChange={(ev: any) => {
+                            partnerFormik.setFieldValue("attachmentBrisovnicaDoc", ev.target.files[0]);
+                          }}
+                        />
+                        <div className="p-2 d-flex justify-content-between w-100 align-items-center">
+                          <span className="text-black">{partnerFormik.values?.attachmentBrisovnicaDoc ? partnerFormik.values?.attachmentBrisovnicaDoc?.name : LANG.APPLICATION_ATTACHMENT_BRISOVNICA}
+                          </span>
+                          <span className="iconWrap"><UploadIcon /></span>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-              <div className="my-3 form-control">
-                <label className="d-inline">
-                  <div className="fileUpload form-group mb-1" >
-                    <input className="d-none" accept={FILE_EXT} id="attachmentBrisovnicaDoc" type="file"
-                    name="attachmentBrisovnicaDoc"
-                     onChange={(ev: any) => {
-                      userFormik.setFieldValue("attachmentBrisovnicaDoc", ev.target.files[0]);
-                    }}
-                    />
-                    <div className="p-2 d-flex justify-content-between w-100 align-items-center">
-                      <span className="text-black">{userFormik.values?.attachmentBrisovnicaDoc ? userFormik.values?.attachmentBrisovnicaDoc?.name : LANG.APPLICATION_ATTACHMENT_BRISOVNICA}
-                      </span>
-                      <span className="iconWrap"><UploadIcon /></span>
-                    </div>
-                  </div>
-                </label>
-              </div>
-            </VisibilityBox>
+                </VisibilityBox>
 
-          </VisibilityBox>
+              </VisibilityBox>
               <VisibilityBox show={sharedActions?.formDetails?._id}>
                 <h4>{LANG.DOCUMENTS}</h4>
                 <div className='row'>
@@ -841,4 +817,4 @@ function UserModal() {
   );
 }
 
-export { UserModal };
+export { PartnerModal };

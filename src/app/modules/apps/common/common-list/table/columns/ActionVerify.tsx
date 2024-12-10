@@ -2,7 +2,7 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { conFirmMessage } from "../../../../../../../utils/shared";
-import { getParnters, verifyPartner } from "../../../../../../../redux/features/partner/_partnerAction";
+import { getPartners, verifyPartner } from "../../../../../../../redux/features/partner/_partnerAction";
 import { setFormDetails, setUserModalStatus } from "../../../../../../../redux/features/shared/sharedSlice";
 import ThreeDotsIcon from "../../../../../../../_metronic/assets/logo/ThreeDotsIcon";
 import { Dropdown } from "react-bootstrap";
@@ -26,7 +26,7 @@ const ActionVerifyCell: FC<any> = ({ user }) => {
   //       if (sharedActions.id === 'PARTNER') {
   //         dispatch(verifyPartner({ id: itemId, verifiedStatus: status }));
   //         setTimeout(() => {
-  //           dispatch(getParnters({ page: 1, limit: 10 }));
+  //           dispatch(getPartners({ page: 1, limit: 10 }));
   //         }, 100);
   //       }
   //     }
