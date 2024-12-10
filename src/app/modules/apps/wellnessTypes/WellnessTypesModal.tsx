@@ -38,16 +38,27 @@ function WellnessTypesModal() {
     validationSchema: FormValidation,
     onSubmit: (values: any, { resetForm }) => {
       values.selectedPage = sharedActions.selectedPage;
+      if(sharedActions?.formDetails?._id) values.id = sharedActions.formDetails?._id;
+      const formData = new FormData();
+      Object.entries(values).forEach(([key, value]: any) => {
+        if (value instanceof File) {
+          formData.append(key, value);
+        } else if (typeof value === "object" && value !== null) {
+          formData.append(key, JSON.stringify(value));
+        } else {
+          formData.append(key, value);
+        }
+      });
       if (sharedActions?.formDetails?._id) {
         dispatch(
-          updateWellnessType({
-            ...values,
-            id: sharedActions.formDetails?._id,
-          })
-        );
+        updateWellnessType({
+          formData,
+          id: sharedActions.formDetails?._id,
+        })
+      )
       } else {
         dispatch(
-          addWellnessType({ ...values})
+          addWellnessType(formData)
         );
       }
       dispatch(setFormDetails({}));
@@ -60,7 +71,7 @@ function WellnessTypesModal() {
   });
 
   useEffect(() => {
-    if (sharedActions?.formDetails?._id && sharedActions?.formDetails?.avatar) setImageUrl(process.env.REACT_APP_FILE_URL + sharedActions?.formDetails?.avatar)
+    if (sharedActions?.formDetails?._id && sharedActions?.formDetails?.image) setImageUrl(process.env.REACT_APP_FILE_URL + sharedActions?.formDetails?.image)
   }, [])
 
   const closeModal = () => {
@@ -70,8 +81,9 @@ function WellnessTypesModal() {
 
   const handleChangeProfileImage = async (e: any) => {
     const selectedFile = e.target.files[0];
+    console.log(selectedFile,">>> selected File >>>>")
     const url = URL.createObjectURL(selectedFile);
-    wellnessTypesFormik.setFieldValue("avatar", selectedFile);
+    wellnessTypesFormik.setFieldValue("image", selectedFile);
     setImageUrl(url);
   };
 

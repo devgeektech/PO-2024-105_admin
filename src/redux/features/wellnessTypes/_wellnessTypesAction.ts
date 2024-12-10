@@ -25,7 +25,8 @@ export const updateWellnessType = createAsyncThunk(
   "updateWellnessType",
   async (values: any, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await axios.put(`${UPDATE_WELLNESS_TYPES}${values.id}`, values);
+      const { formData, id } = values;
+      const { data } = await axios.put(`${UPDATE_WELLNESS_TYPES}${id}`, formData);
       notify(data.responseMessage, 'success');
       dispatch(getWellnessTypes({page: values.selectedPage || 1, limit:10}));
       return data;

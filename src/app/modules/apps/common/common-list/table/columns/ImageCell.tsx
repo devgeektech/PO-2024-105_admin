@@ -12,11 +12,11 @@ const ImageCell: FC<Props> = ({ userObj }) => {
     <div className="d-flex align-items-center">
       <div className="symbol symbol-50px overflow-hidden me-3">
         <span >
-          {(userObj.avatar) ? (
+          {(userObj.image) ? (
             <div className="symbol-label">
               <img
-                src={sharedActions.id === 'User' ? process.env.REACT_APP_FILE_URL+userObj?.avatar : userObj?.avatar}
-                alt={userObj.avatar?.substring(0, 1).toUpperCase()}
+                src={sharedActions.id === 'WellnessTypes' ? process.env.REACT_APP_FILE_URL+userObj?.image : userObj?.image}
+                alt={userObj.image?.substring(0, 1).toUpperCase()}
                 className="w-50"
               />
             </div>
