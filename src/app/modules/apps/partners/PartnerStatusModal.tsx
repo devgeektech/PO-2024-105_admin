@@ -19,7 +19,7 @@ function PartnerStatusModal() {
   const status = sharedActions.partnerDetails.updatedStatus;
 
   const formInitialValues = {
-    checkinRate: sharedActions.partnerDetails.checkinRate,
+    checkinRate: sharedActions.partnerDetails.checkinRate || "0",
     rejectionReason: sharedActions.partnerDetails.rejectionReason,
     status: status?.toLowerCase(),
   };
