@@ -6,6 +6,8 @@ const initialState: any = {
   categoryModal: false,
   userDetailsModal: false,
   userShowDetailsModal: false,
+  partnerShowDetailsModal: false,
+  partnerDetailsModal: false,
   eventDetailsModal: false,
   serviceDetailsModal: false,
   roomDetailsModal: false,
@@ -19,9 +21,11 @@ const initialState: any = {
   companyModal: false,
   formDetails: {},
   eventDetail: {},
+  partnerDetails: {},
   memberAssignedTrainerDetails:{},
   files: [],
-  selectedPage: 1
+  selectedPage: 1,
+  partnerStatusModal: false,  
 };
 
 export const sharedSlice = createSlice({
@@ -48,6 +52,12 @@ export const sharedSlice = createSlice({
     },
     setUserShowModalStatus: (state, { payload }) => {
       state.userShowDetailsModal = payload
+    },
+    setPartnerShowModalStatus: (state, { payload }) => {
+      state.partnerShowDetailsModal = payload
+    },
+    setPartnerModalStatus: (state, { payload }) => {
+      state.partnerDetailsModal = payload
     },
     setEventModalStatus: (state, { payload }) => {
       state.eventDetailsModal = payload;
@@ -93,7 +103,13 @@ export const sharedSlice = createSlice({
     },
     setCompanyModalStatus: (state, { payload }) => {
       state.companyModal = payload; 
-    }
+    },
+    setPartnerDetails: (state, { payload }) => {
+      state.partnerDetails = payload
+    },
+    setPartnerStatusModalStaus: (state, { payload }) => {
+      state.partnerStatusModal = payload
+    },
   },
 });
 
@@ -112,6 +128,8 @@ export const {
   setFiles,
   setPartnerProfileImages,
   setUserShowModalStatus,
+  setPartnerShowModalStatus,
+  setPartnerModalStatus,
   setTaskModalStatus,
   setForumModalStatus,
   setSelectedPage,
@@ -119,5 +137,7 @@ export const {
   setMemberAssignedTrainerDetails,
   setWellnessTypesModalStatus,
   setSubservicesModalStatus,
-  setCompanyModalStatus
+  setCompanyModalStatus,
+  setPartnerDetails,
+  setPartnerStatusModalStaus,
 } = sharedSlice.actions;

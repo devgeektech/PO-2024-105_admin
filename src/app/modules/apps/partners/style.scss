@@ -1,0 +1,54 @@
+.image-upload>input {
+  display: none;
+}
+
+.font-sm-12 {
+  font-size: 12px;
+}
+
+.wrapmodal .modal-dialog {
+  max-width: 600px;
+}
+
+.half50 {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+
+  p {
+    width: 100%;
+    padding: 5px 15px;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+
+    .textCap {
+      text-transform: capitalize;
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .wrapmodal .modal-dialog {
+    max-width: 600px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .wrapmodal .modal-body {
+    padding: 10px;
+  }
+
+  .half50 {
+    padding: 15px 0px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .half50 p {
+    width: 100%;
+  }
+}

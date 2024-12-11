@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getParnters } from "./_partnerAction";
+import { getPartners } from "./_partnerAction";
 
 const initialState: any = {
   data: [],
@@ -17,12 +17,12 @@ export const partnerList = createSlice({
 
   extraReducers(builder) {
     builder
-      .addCase(getParnters.pending, (state) => {
+      .addCase(getPartners.pending, (state) => {
         state.isLoading = true;
         state.isSuccess = false;
       })
 
-      .addCase(getParnters.fulfilled, (state, { payload }) => {
+      .addCase(getPartners.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.data = payload.data;
@@ -30,7 +30,7 @@ export const partnerList = createSlice({
         state.responseCode = payload.responseCode
         state.totalRecord = payload.totalRecord
       })
-      .addCase(getParnters.rejected, (state, { payload }) => {
+      .addCase(getPartners.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.errorMessage = payload;

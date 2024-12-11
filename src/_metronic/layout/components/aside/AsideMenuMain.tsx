@@ -1,6 +1,5 @@
 import EventIcon from "../../../../app/icons/EventIcon";
 import PartnersIcon from "../../../../app/icons/PartnersIcon";
-import ServicesIcon from "../../../../app/icons/ServicesIcon";
 import { AsideMenuItem } from "./AsideMenuItem";
 
 export function AsideMenuMain() {
@@ -11,10 +10,12 @@ export function AsideMenuMain() {
       <AsideMenuItem to="/events" icon={<EventIcon/>} title="Events" /> */}
 
       <AsideMenuItem to="/services" icon={<EventIcon/>} title="Services" />
+      
+      <AsideMenuItem to="/subServices" icon={<EventIcon />} title="Sub Services" />
 
       <AsideMenuItem to="/wellnessTypes" icon={<EventIcon />} title="Wellness Types" />
       
-      <AsideMenuItem to="/subServices" icon={<EventIcon />} title="Sub Services" />
+      <AsideMenuItem to="/partners" icon={<PartnersIcon />} title="Partners" />
 
       <AsideMenuItem to="/companies" icon={<EventIcon />} title="Companies" />
 
