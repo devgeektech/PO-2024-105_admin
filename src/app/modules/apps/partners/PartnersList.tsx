@@ -11,6 +11,7 @@ import './style.scss'
 import { getPartners } from "../../../../redux/features/partner/_partnerAction";
 import { partnersColumns } from "../common/common-list/table/columns/_partnerColumns";
 import { PartnerDetailsModal } from "./PartnerDetailsModal";
+import { PartnerStatusModal } from "./PartnerStatusModal";
 
 const PartnerList = () => {
   const sharedActions = useSelector((state: any) => state.sharedActions);
@@ -32,6 +33,7 @@ const PartnerList = () => {
         <CommonTable data={data} columns={partnersColumns} />
         {sharedActions.partnerDetailsModal && <PartnerModal />}
         {sharedActions.partnerShowDetailsModal && <PartnerDetailsModal /> }
+        {sharedActions.partnerStatusModal && <PartnerStatusModal /> }
         {totalRecord > 10 && <Pagination
           totalRecord={totalRecord}
           handleClick={handleClick}

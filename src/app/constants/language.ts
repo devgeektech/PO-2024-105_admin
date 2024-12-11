@@ -40,6 +40,7 @@ export const LANG={
     APPLICATION_ATTACHMENT_BRISOVNICA:"Confirmation of deregistration from the responsible regional association (Brisovnica)",
     CANCEL:"Cancel",
     SUBMIT:"Submit",
+    CHECKIN_RATE_REQUIRED:"check-in rate is required",
 
 
 
