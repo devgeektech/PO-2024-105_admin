@@ -18,6 +18,7 @@ const initialState: any = {
   forumDetailsModal: false,
   wellnessTypesModal: false,
   subServicesModal: false,
+  companyModal: false,
   formDetails: {},
   eventDetail: {},
   partnerDetails: {},
@@ -100,6 +101,9 @@ export const sharedSlice = createSlice({
     setSubservicesModalStatus: (state, { payload }) => {
       state.subServicesModal = payload;
     },
+    setCompanyModalStatus: (state, { payload }) => {
+      state.companyModal = payload; 
+    },
     setPartnerDetails: (state, { payload }) => {
       state.partnerDetails = payload
     },
@@ -133,6 +137,7 @@ export const {
   setMemberAssignedTrainerDetails,
   setWellnessTypesModalStatus,
   setSubservicesModalStatus,
+  setCompanyModalStatus,
   setPartnerDetails,
   setPartnerStatusModalStaus,
 } = sharedSlice.actions;

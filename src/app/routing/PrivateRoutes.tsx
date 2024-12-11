@@ -8,6 +8,7 @@ import EventPage from "../modules/apps/events/EventPage";
 import ServicePage from "../modules/apps/services/ServicePage";
 import WellnessTypesPage from "../modules/apps/wellnessTypes/WellnessTypesPage";
 import SubServicesPage from "../modules/apps/subServices/SubServicesPage";
+import CompanyPage from "../modules/apps/company/CompanyPage";
 import PartnerPage from "../modules/apps/partners/PartnerPage";
 const PrivateRoutes = () => {
   const UserPage = lazy(() => import("../modules/apps/users/UserPage"));
@@ -67,6 +68,16 @@ const PrivateRoutes = () => {
             }
           />
           <Route path="*" element={<Navigate to="/services/list" />} />
+
+          <Route
+            path="companies/*"
+            element={
+              <SuspensedView>
+                <CompanyPage />
+              </SuspensedView>
+            }
+          />
+          <Route path="*" element={<Navigate to="/companies/list" />} />
 
           <Route
             path="partners/*"

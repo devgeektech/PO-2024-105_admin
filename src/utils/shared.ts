@@ -7,6 +7,7 @@ import { getEvents } from "../redux/features/event/_eventAction";
 import { getServices } from "../redux/features/service/_serviceAction";
 import { getSubServices } from "../redux/features/subServices/_subServicesAction";
 import { getWellnessTypes } from "../redux/features/wellnessTypes/_wellnessTypesAction";
+import { getCompanies } from "../redux/features/company/_companyAction";
 
 export const commonSwtichCases = (id: any, searchValue: any, dispatch: any) => {
     searchValue = encodeURIComponent(searchValue)
@@ -31,6 +32,9 @@ export const commonSwtichCases = (id: any, searchValue: any, dispatch: any) => {
         case "WellnessTypes":
             dispatch(getWellnessTypes({ search: searchValue.trim(), page: 1, limit: 10 })); 
             break;
+        case "Company":
+            dispatch(getCompanies({ search: searchValue.trim(), page: 1, limit: 10 }));
+            break;    
         default:
     }
 }

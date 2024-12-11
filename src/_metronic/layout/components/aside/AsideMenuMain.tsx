@@ -17,6 +17,8 @@ export function AsideMenuMain() {
       
       <AsideMenuItem to="/partners" icon={<PartnersIcon />} title="Partners" />
 
+      <AsideMenuItem to="/companies" icon={<EventIcon />} title="Companies" />
+
       {window.location.pathname === '/user/change-password' && <AsideMenuItem to="/user" icon={<PartnersIcon/>} title="Change Password" />}
     </>
   );

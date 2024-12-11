@@ -18,6 +18,11 @@ export const GENDERS = [
   { value: "other", label: "Other" },
 ];
 
+export const COMPANY_STATUS = [
+  { value: "active", label: "active" },
+  { value: "rejected", label: "rejected" }
+];
+
 export const EVENTS_STATUS = [
   { value: "scheduled", label: "Scheduled" },
   { value: "completed", label: "Completed" },

@@ -12,6 +12,7 @@ import {
   setUserModalStatus,
   setUserShowModalStatus,
   setWellnessTypesModalStatus,
+  setCompanyModalStatus,
   setPartnerModalStatus,
   setPartnerShowModalStatus,
   setPartnerDetails,
@@ -66,6 +67,9 @@ const ActionCell: FC<Props> = ({ user }) => {
         break;
       case "subServices":
         dispatch(setSubservicesModalStatus(true));
+        break;
+      case 'Company':
+        dispatch(setCompanyModalStatus(true));
         break;
       case "Partner":
         dispatch(setPartnerModalStatus(true));
@@ -146,6 +150,11 @@ const ActionCell: FC<Props> = ({ user }) => {
             );
           }, 100);
         }
+        else if (sharedActions.id === "Company") {
+          setTimeout(() => {
+            // dispatch(deleteSubService({ id: user?._id, selectedPage: sharedActions.selectedPage }));
+          }, 100);
+        }  
       }
     });
   };

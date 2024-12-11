@@ -7,6 +7,8 @@ import { serviceList } from "./features/service/serviceSlice";
 
 import { wellnessTypesList } from "./features/wellnessTypes/wellnessTypesSlice";
 import { subServicesList } from "./features/subServices/subServicesSlice";
+import { companiesList } from "./features/company/companySlice";
+
 import { partnerList } from "./features/partner/partnerSlice";
 export const store = configureStore({
   reducer: {
@@ -16,6 +18,7 @@ export const store = configureStore({
     serviceList: serviceList.reducer,
     wellnessTypesList : wellnessTypesList.reducer,
     subServices: subServicesList.reducer,
+    companyList: companiesList.reducer,
     partnerList: partnerList.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -24,7 +27,7 @@ export const store = configureStore({
         ignoredActions: ["persist/PERSIST"],
       },
     })
-      .concat(logger as any)
+    .concat(logger as any)
 });
 
 export type RootState = ReturnType<typeof store.getState>;
