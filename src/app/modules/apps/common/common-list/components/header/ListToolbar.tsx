@@ -6,7 +6,6 @@ const UsersListToolbar = () => {
   const sharedActions = useSelector((state: any) => state.sharedActions);
   const dispatch = useDispatch();
   const openAddUserModal = () => {
-console.log('sharedActions.id =========== ',sharedActions.id);
 
     switch (sharedActions.id) {
       case 'User':

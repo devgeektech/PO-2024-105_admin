@@ -79,7 +79,6 @@ const PrivateRoutes = () => {
           />
           <Route path="*" element={<Navigate to="/companies/list" />} />
 
-
           <Route
             path="partners/*"
             element={
