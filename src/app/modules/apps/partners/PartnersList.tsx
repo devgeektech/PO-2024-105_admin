@@ -2,7 +2,7 @@
 
 import { CommonTable } from "../common/common-list/table/Table";
 import { KTCard } from "../../../../_metronic/helpers";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Pagination } from "../common/common-list/components/pagination/Pagination";
 import { setId } from "../../../../redux/features/shared/sharedSlice";

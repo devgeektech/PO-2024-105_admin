@@ -174,7 +174,7 @@ const ActionCell: FC<Props> = ({ user }) => {
                   Details
                 </Link>
               )}
-              {(sharedActions.id !== "Partner") && (
+              
                 <Link
                   to={"#"}
                   className="menu-link justify-content-start px-3 btn  btn-active-light-primary btn-sm"
@@ -182,7 +182,7 @@ const ActionCell: FC<Props> = ({ user }) => {
                 >
                   <KTIcon iconName="pencil" className="fs-2" /> Edit
                 </Link>
-              )}
+              
               {(sharedActions.id !== "Partner") && (
                 <Link
                   to={"#"}
