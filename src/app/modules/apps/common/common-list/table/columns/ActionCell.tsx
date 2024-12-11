@@ -12,6 +12,7 @@ import {
   setUserModalStatus,
   setUserShowModalStatus,
   setWellnessTypesModalStatus,
+  setCompanyModalStatus,
 } from "../../../../../../../redux/features/shared/sharedSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { conFirmMessage } from "../../../../../../../utils/shared";
@@ -63,6 +64,9 @@ const ActionCell: FC<Props> = ({ user }) => {
         break;
       case "subServices":
         dispatch(setSubservicesModalStatus(true));
+        break;
+      case 'Company':
+        dispatch(setCompanyModalStatus(true));
         break;
       default:
     }
@@ -127,6 +131,11 @@ const ActionCell: FC<Props> = ({ user }) => {
             );
           }, 100);
         }
+        else if (sharedActions.id === "Company") {
+          setTimeout(() => {
+            // dispatch(deleteSubService({ id: user?._id, selectedPage: sharedActions.selectedPage }));
+          }, 100);
+        }  
       }
     });
   };

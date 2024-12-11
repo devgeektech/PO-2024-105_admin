@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { KTIcon } from '../../../../../../../_metronic/helpers'
-import { setEventModalStatus, setServiceModalStatus, setSubservicesModalStatus, setUserModalStatus, setWellnessTypesModalStatus } from '../../../../../../../redux/features/shared/sharedSlice';
+import { setCompanyModalStatus, setEventModalStatus, setServiceModalStatus, setSubservicesModalStatus, setUserModalStatus, setWellnessTypesModalStatus } from '../../../../../../../redux/features/shared/sharedSlice';
 
 const UsersListToolbar = () => {
   const sharedActions = useSelector((state: any) => state.sharedActions);
@@ -21,7 +21,10 @@ const UsersListToolbar = () => {
         dispatch(setWellnessTypesModalStatus(true))
         break;
       case 'subServices':
-        dispatch(setSubservicesModalStatus(true))
+        dispatch(setSubservicesModalStatus(true));
+        break;
+      case 'Company':
+        dispatch(setCompanyModalStatus(true));
         break;
       default:
     }
@@ -29,7 +32,7 @@ const UsersListToolbar = () => {
 
   return (
     <>
-      {(sharedActions.id === "User" || sharedActions.id === "Event" || sharedActions.id === "WellnessTypes"
+      {(sharedActions.id === "User" || sharedActions.id === "Company" || sharedActions.id === "WellnessTypes"
         || sharedActions.id === "Room" || sharedActions.id === "Task" || sharedActions.id === "Forum" || sharedActions.id === "Service"
         || sharedActions.id === "subServices" || sharedActions.id === "Task" || sharedActions.id === "Forum"
       ) && <div className='d-flex justify-content-end' data-kt-user-table-toolbar='base'>
