@@ -7,6 +7,7 @@ import {
   setPartnerShowModalStatus,
 } from "../../../../redux/features/shared/sharedSlice";
 import { Button } from "react-bootstrap";
+import { LANG } from "../../../constants/language";
 
 function PartnerDetailsModal() {
   const dispatch: any = useDispatch();
@@ -77,6 +78,30 @@ function PartnerDetailsModal() {
                     <strong>Check-in Rate:</strong>{" "}
                     {sharedActions.partnerDetails?.checkinRate || "N/A"}
                   </p>
+
+                  <div>
+                    <h4>{LANG.LOCATIONS}</h4>
+
+                    <div>
+                      <p>
+                        <strong>{LANG.ADDRESS}:</strong>{" "}
+                        {sharedActions.partnerDetails?.address || "N/A"}
+                      </p>
+                      <p>
+                        <strong>{LANG.CITY}:</strong>{" "}
+                        {sharedActions.partnerDetails?.city || "N/A"}
+                      </p>
+                      <p>
+                        <strong>{LANG.STATE}:</strong>{" "}
+                        {sharedActions.partnerDetails?.state || "N/A"}
+                      </p>
+                      <p>
+                        <strong>{LANG.ZIP_CODE}:</strong>{" "}
+                        {sharedActions.partnerDetails?.zipCode || "N/A"}
+                      </p>
+
+                    </div>
+                  </div>
 
                 </div>
               </div>

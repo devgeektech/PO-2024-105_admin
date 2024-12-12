@@ -3,11 +3,10 @@ import axios from "axios";
 import { setFiles, setPartnerProfileImages } from "../shared/sharedSlice";
 import { notify } from "../../../utils/shared";
 const API_URL = process.env.REACT_APP_API_URL;
-const API_URL_AUTH = process.env.REACT_APP_AUTH_API_URL;
 const GET_ALL_PARTNER = `${API_URL}/adminWeb/partners`;
-const VERIFY_PARTNER = `${API_URL_AUTH}/verifyPartnerByAdmin`;
-const COMMON_FILE_UPLOAD = `${API_URL_AUTH}/fileUpload`;
-const UPDATE_PARTNER_DETAILS = `${API_URL_AUTH}/updatePartnerAccount`;
+const VERIFY_PARTNER = `${API_URL}/verifyPartnerByAdmin`;
+const COMMON_FILE_UPLOAD = `${API_URL}/fileUpload`;
+const UPDATE_PARTNER_DETAILS = `${API_URL}/adminWeb/partner/`;
 const UPPDATE_PARTNER_STATUS = `${API_URL}/adminWeb/partner/updateStatus/`;
 
 
@@ -82,10 +81,11 @@ export const partnerProfileImage = createAsyncThunk(
 
 export const updatePartnerDetails = createAsyncThunk(
   "updatePartnerDetails",
-  async (values: any, { rejectWithValue, dispatch }) => {
+  async ({ formData, id }: { formData: FormData; id: string }, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await axios.post(`${UPDATE_PARTNER_DETAILS}`, values);
+      const { data } = await axios.put(`${UPDATE_PARTNER_DETAILS}${id}`, formData);
       notify(data.responseMessage, 'success');
+      dispatch(getPartners({page: formData.get("selectedPage") || 1, limit:10}));
       return data;
     } catch (error: any) {
       const { responseMessage } = error.response?.data;
