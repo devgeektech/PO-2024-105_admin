@@ -55,8 +55,12 @@ function PartnerDetailsModal() {
                     {sharedActions.partnerDetails?.email || "N/A"}
                   </p>
                   <p>
-                    <strong>Phone Number :</strong>{" "}
+                    <strong>Phone Number:</strong>{" "}
                     {sharedActions.partnerDetails?.phone || "N/A"}
+                  </p>
+                  <p>
+                    <strong>Status:</strong>{" "}
+                    <span className="textCap">{sharedActions.partnerDetails?.status || "N/A"}</span>
                   </p>
                   <p>
                     <strong>Business Name:</strong>{" "}
@@ -71,37 +75,44 @@ function PartnerDetailsModal() {
                     <span className="textCap">{sharedActions.partnerDetails?.businessType?.name || "N/A"}</span>
                   </p>
                   <p>
-                    <strong>Services:</strong>{" "}
-                    <span className="textCap">{sharedActions.partnerDetails?.allServiceNames?.join(", ") || "N/A"}</span>
-                  </p>
-                  <p>
                     <strong>Check-in Rate:</strong>{" "}
                     {sharedActions.partnerDetails?.checkinRate || "N/A"}
                   </p>
 
-                  <div>
-                    <h4>{LANG.LOCATIONS}</h4>
-
-                    <div>
-                      <p>
-                        <strong>{LANG.ADDRESS}:</strong>{" "}
-                        {sharedActions.partnerDetails?.address || "N/A"}
-                      </p>
-                      <p>
-                        <strong>{LANG.CITY}:</strong>{" "}
-                        {sharedActions.partnerDetails?.city || "N/A"}
-                      </p>
-                      <p>
-                        <strong>{LANG.STATE}:</strong>{" "}
-                        {sharedActions.partnerDetails?.state || "N/A"}
-                      </p>
-                      <p>
-                        <strong>{LANG.ZIP_CODE}:</strong>{" "}
-                        {sharedActions.partnerDetails?.zipCode || "N/A"}
-                      </p>
-
-                    </div>
-                  </div>
+                  <h4>{LANG.LOCATIONS}</h4>
+                  {sharedActions.partnerDetails?.locations?.length ? (
+                    sharedActions.partnerDetails.locations.map((location, index) => (
+                      <div key={index} className="location-section">
+                        <p>
+                          <strong>{LANG.ADDRESS}:</strong> {location.address || "N/A"}
+                        </p>
+                        <p>
+                          <strong>{LANG.CITY}:</strong> {location.city || "N/A"}
+                        </p>
+                        <p>
+                          <strong>{LANG.STATE}:</strong> {location.state || "N/A"}
+                        </p>
+                        <p>
+                          <strong>{LANG.ZIP_CODE}:</strong> {location.zipCode || "N/A"}
+                        </p>
+                        <p>
+                          <strong>{LANG.PHONE}:</strong> {location.phone || "N/A"}
+                        </p>
+                        <p>
+                          <strong>{LANG.BUSINESS_START_TIME}:</strong> {location.startTime || "N/A"}
+                        </p>
+                        <p>
+                          <strong>{LANG.BUSINESS_END_TIME}:</strong> {location.endTime || "N/A"}
+                        </p>
+                        <p>
+                          <strong>{LANG.SERVICES}:</strong>
+                          <span className="textCap">{location.serviceNames?.join(", ") || "N/A"}</span>
+                        </p>
+                      </div>
+                    ))
+                  ) : (
+                    <p>{LANG.NO_LOCATIONS_AVAILABLE}</p> // Fallback message if no locations
+                  )}
 
                 </div>
               </div>
@@ -112,6 +123,7 @@ function PartnerDetailsModal() {
             <Button
               type="button"
               variant="secondary"
+              className="primaryBtn"
               onClick={() => updateStatus("rejected")}
             >
               Reject

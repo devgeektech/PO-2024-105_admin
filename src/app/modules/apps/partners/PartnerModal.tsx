@@ -11,7 +11,7 @@ import { Form } from "react-bootstrap";
 import FieldInputText from "../common/InputFeilds/InputTextField";
 import * as Yup from "yup";
 import { GENDERS, REQUIRED } from "../../../../utils/const";
-import Select, { components } from "react-select";
+import Select from "react-select";
 import logo from "../../../../_metronic/assets/logo/admin-logo.png";
 import {
   // addParnerDetails,

@@ -26,8 +26,8 @@ function PartnerStatusModal() {
   const eventFormValidation = Yup.object().shape({
     checkinRate: Yup.string().required(REQUIRED),
     rejectionReason: Yup.string().test(
-      REQUIRED, 
-      function (value) {        
+      REQUIRED,
+      function (value) {
         return this.parent.status?.toLowerCase() === 'rejected' ? !!value : true;
       }
     )
@@ -116,7 +116,8 @@ function PartnerStatusModal() {
             )}
 
             <Modal.Footer>
-              <Button variant="secondary" onClick={closeModal}>
+              <Button variant="secondary"
+                className="primaryBtn" onClick={closeModal}>
                 Cancel
               </Button>
               <Button type="submit" className="primaryBtn active">

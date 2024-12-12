@@ -6,10 +6,6 @@
   font-size: 12px;
 }
 
-.wrapmodal .modal-dialog {
-  max-width: 600px;
-}
-
 .half50 {
   display: flex;
   flex-wrap: wrap;
@@ -18,7 +14,7 @@
   border-radius: 4px;
 
   p {
-    width: 100%;
+    width: 50%;
     padding: 5px 15px;
     margin-bottom: 0;
     display: flex;
@@ -28,6 +24,21 @@
     .textCap {
       text-transform: capitalize;
     }
+  }
+
+  h4 {
+    text-align: center;
+    padding-bottom: 10px;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .location-section {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 1px solid #eee;
   }
 }
 
