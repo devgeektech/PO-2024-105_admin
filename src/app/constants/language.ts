@@ -61,6 +61,7 @@ export const LANG={
     SERVICES: "Services",
     WELCOME_BACK:"Welcome back",
     TRAINER:"Trainer",
+    NO_LOCATION_IMAGES: "Location images are not available",
 
 
     ALREADY_SELECTED_IN_TEAM_A:"Bereits in Team A ausgewählt",

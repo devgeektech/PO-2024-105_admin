@@ -35,7 +35,6 @@ function PartnerDetailsModal() {
 
   const sliderRef = useRef<Slider | null>(null);
 
-
   useEffect(() => {
     if (sliderRef.current) {
       sliderRef.current.slickGoTo(0);
@@ -141,23 +140,26 @@ function PartnerDetailsModal() {
                         >
                           <Slider {...settings} ref={sliderRef}>
                             {location?.images?.length ? (
-                              location.images.map((imgSrc, index) => (
-                                <div key={index} className="location-section">
+                              location.images
+                                .filter((imgSrc) => imgSrc.trim() !== "") // Filter out empty strings
+                                .map((imgSrc, index) => (
+                                  <div key={index} className="location-section">
 
-                                  <div>
-                                    <img src={imgSrc}
-                                      style={{
-                                        width: "95px",
-                                        height: "100px",
-                                      }}></img>
+                                    <div>
+                                      <img
+                                        src={imgSrc}
+                                        alt={`Slide ${index + 1}`}
+                                        style={{
+                                          width: "95px",
+                                          height: "100px",
+                                        }}
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                              ))
+                                ))
                             ) : (
-                              <p>{LANG.NO_LOCATIONS_AVAILABLE}</p> // Fallback message if no locations
+                              <p>{LANG.NO_LOCATION_IMAGES}</p> // Fallback message if no locations
                             )}
-
-
                           </Slider>
                         </div>
 
