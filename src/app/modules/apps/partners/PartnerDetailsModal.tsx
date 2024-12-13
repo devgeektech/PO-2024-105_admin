@@ -1,3 +1,4 @@
+import React, { useState, useRef, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,6 +9,10 @@ import {
 } from "../../../../redux/features/shared/sharedSlice";
 import { Button } from "react-bootstrap";
 import { LANG } from "../../../constants/language";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function PartnerDetailsModal() {
   const dispatch: any = useDispatch();
@@ -26,7 +31,24 @@ function PartnerDetailsModal() {
 
     dispatch(setPartnerShowModalStatus(false));
     dispatch(setPartnerStatusModalStaus(true));
-  }
+  };
+
+  const sliderRef = useRef<Slider | null>(null);
+
+
+  useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(0);
+    }
+  }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+  };
 
   return (
     <>
@@ -108,6 +130,37 @@ function PartnerDetailsModal() {
                           <strong>{LANG.SERVICES}:</strong>
                           <span className="textCap">{location.serviceNames?.join(", ") || "N/A"}</span>
                         </p>
+
+                        <div
+                          style={{
+                            background: "#fff",
+                            padding: "20px",
+                            borderRadius: "8px",
+                            width: "100%",
+                          }}
+                        >
+                          <Slider {...settings} ref={sliderRef}>
+                            {location?.images?.length ? (
+                              location.images.map((imgSrc, index) => (
+                                <div key={index} className="location-section">
+
+                                  <div>
+                                    <img src={imgSrc}
+                                      style={{
+                                        width: "95px",
+                                        height: "100px",
+                                      }}></img>
+                                  </div>
+                                </div>
+                              ))
+                            ) : (
+                              <p>{LANG.NO_LOCATIONS_AVAILABLE}</p> // Fallback message if no locations
+                            )}
+
+
+                          </Slider>
+                        </div>
+
                       </div>
                     ))
                   ) : (
